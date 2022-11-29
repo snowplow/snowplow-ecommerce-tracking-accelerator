@@ -15,7 +15,9 @@ aliases = [
 
 #### Introduction
 
+
 Welcome to the **Ecommerce Web** accelerator. Once finished, will have all the required tracking and data infrastructure to measure customer behavior, discover new growth opportunities and optimize your online sales performance.
+
 
 Here you will learn to:
 
@@ -41,6 +43,7 @@ In approximately 2 working days (~13 working hours) you can achieve the followin
 - **Track -** Set up ecommerce actions tracking on your store
 - **Upload data -** Upload a sample Snowplow events dataset to your Snowflake warehouse
 - **Model -** Configure and run the snowplow-web data model
+
 - **Visualize -** Visualize the modeled data with Streamlit
 - **Enrich -** Add enrichments to your data
 - **Next steps -** Gain value from your own pipeline data through modeling and visualization
@@ -86,7 +89,7 @@ Please note that the snowplow-ecommerce package currently only support BigQuery,
 
 #### What you will build
 
-Ecommerce Dashboard - with Streamlit or Looker
+Ecommerce Dashboard - with Streamlit
 
 {{< tabs groupId="dashboard_images" >}}
 
@@ -95,9 +98,5 @@ Ecommerce Dashboard - with Streamlit or Looker
 !['Streamlit Dashboard Example' ](images/streamlit_dashboard.png)
 
 {{% /tab %}}
-
-{{% tab name="Loker" %}}
-
-!['Looker dashboard example' ](images/looker_dashboard.png)
 
 {{< /tabs >}}
