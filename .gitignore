@@ -1,1 +1,4 @@
 public/
+.vscode/*
+content/visualization/visualization_1.files
+build/
