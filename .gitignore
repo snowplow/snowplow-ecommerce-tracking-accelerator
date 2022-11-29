@@ -1,4 +1,4 @@
 public/
 .vscode/*
-content/visualization/visualization_1.files
 build/
+content/visualization/visualization_1.files/streamlit-project-ecommerce/*

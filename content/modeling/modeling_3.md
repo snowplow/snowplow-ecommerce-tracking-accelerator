@@ -4,7 +4,7 @@ weight = 3
 post = ""
 +++
 
-Data should now be loaded into your warehouse. In this section we will take a closer look at the output to mitigate data issues and get familiar with the derived tables.
+Processed data should now be loaded into your warehouse. In this section we will take a closer look at the output to get familiar with the derived tables.
 
 ***
 
