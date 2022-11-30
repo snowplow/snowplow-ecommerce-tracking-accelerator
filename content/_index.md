@@ -41,10 +41,8 @@ Here you will learn to:
 In approximately 2 working days (~13 working hours) you can achieve the following:
 
 - **Track -** Set up ecommerce actions tracking on your store
-<!-- - **Upload data -** Upload a sample Snowplow events dataset to your Snowflake warehouse -->
 - **Model -** Configure and run the snowplow-ecommerce data model
 - **Visualize -** Visualize the modeled data with Streamlit
-- **Enrich -** Add enrichments to your data
 - **Next steps -** Gain value from your own pipeline data through modeling and visualization
 
 {{<mermaid>}}
@@ -52,17 +50,13 @@ gantt
 dateFormat HH-mm
 axisFormat %M
 section 1. Track
-2h :track, 00-00, 2m
-section 1. Upload
-1h :upload, after track, 1m
-section 3. Model
-1h :model, after upload, 1m
-section 4. Visualize
+~4-10h :track, 00-00, 4m
+section 2. Model
+1h :model, after track, 1m
+section 3. Visualize
 1h :visualize, after model, 1m
-section 5. Enrich
-1h :enrich, after visualize, 1m
-section 6. Next steps
-2h :next steps, after enrich, 2m
+section 4. Next steps
+2h :next steps, after visualize, 2m
 
 {{</mermaid >}}
 

@@ -30,6 +30,27 @@ trackAddToCart({ products: Product[], total_value, currency, cart_id });
 - Where `currency` is the currency of the cart.
 - Where `cart_id` is an identifier for the current cart instance.
 
+**Example usage:**
+
+```ts
+import { trackAddToCart } from "@snowplow/browser-plugin-snowplow-ecommerce";
+
+trackAddToCart({
+  products: [
+    {
+      id: "P125",
+      name: "Baseball T",
+      brand: "Snowplow",
+      category: "Mens/Apparel",
+      price: 200,
+      currency: "USD",
+    },
+  ],
+  total_value: 200,
+  currency: "USD",
+});
+```
+
 {{% /tab %}}
 {{% tab name="JavaScript API" %}}
 
@@ -47,6 +68,25 @@ window.snowplow("trackAddToCart:{trackerName}", { products: Product[], total_val
 - Where `total_value` is the value of the cart after the addition.
 - Where `currency` is the currency of the cart.
 - Where `cart_id` is an identifier for the current cart instance.
+
+**Example usage:**
+
+```ts
+window.snowplow("trackAddToCart:{trackerName}", {
+  products: [
+    {
+      id: "P125",
+      name: "Baseball T",
+      brand: "Snowplow",
+      category: "Mens/Apparel",
+      price: 200,
+      currency: "USD",
+    },
+  ],
+  total_value: 200,
+  currency: "USD",
+});
+```
 
 {{% /tab %}}
 
@@ -74,6 +114,27 @@ trackRemoveFromCart({ products: Product[], total_value, currency, cart_id });
 - Where `currency` is the currency of the cart.
 - Where `cart_id` is an identifier for the current cart instance.
 
+**Example usage:**
+
+```ts
+import { trackRemoveFromCart } from "@snowplow/browser-plugin-snowplow-ecommerce";
+
+trackRemoveFromCart({
+  products: [
+    {
+      id: "P125",
+      name: "Baseball T",
+      brand: "Snowplow",
+      category: "Mens/Apparel",
+      price: 200,
+      currency: "USD",
+    },
+  ],
+  total_value: 0, /* Total cart value after removal of the product */
+  currency: "USD",
+});
+```
+
 {{% /tab %}}
 {{% tab name="JavaScript API" %}}
 
@@ -91,6 +152,25 @@ window.snowplow("trackRemoveFromCart:{trackerName}", { products: Product[], tota
 - Where `total_value` is the value of the cart after the removal.
 - Where `currency` is the currency of the cart.
 - Where `cart_id` is an identifier for the current cart instance.
+
+**Example usage:**
+
+```ts
+window.snowplow("trackRemoveFromCart:{trackerName}", {
+  products: [
+    {
+      id: "P125",
+      name: "Baseball T",
+      brand: "Snowplow",
+      category: "Mens/Apparel",
+      price: 200,
+      currency: "USD",
+    },
+  ],
+  total_value: 0,
+  currency: "USD",
+});
+```
 
 {{% /tab %}}
 

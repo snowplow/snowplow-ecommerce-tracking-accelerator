@@ -1,7 +1,7 @@
 +++
 title = "Visualization"
 chapter = true
-weight = 4
+weight = 3
 pre = "3. "
 post = ""
 +++
@@ -12,13 +12,11 @@ post = ""
 
 {{<mermaid>}}
 flowchart LR
-    id1(Upload)-->id2(Model)-->id3(Visualize)-->id4(Track)-->id5(Enrich)-->id6(Test)
-    style id3 fill:#f5f5f5,stroke:#6638B8,stroke-width:3px
+    id1(Track)-->id2(Model)-->id3(Visualize)-->id4(Next steps)
     style id1 fill:#f5f5f5,stroke:#333,stroke-width:1px
-    style id5 fill:#f5f5f5,stroke:#333,stroke-width:1px
-    style id4 fill:#f5f5f5,stroke:#333,stroke-width:1px
     style id2 fill:#f5f5f5,stroke:#333,stroke-width:1px
-    style id6 fill:#f5f5f5,stroke:#333,stroke-width:1px
+    style id3 fill:#f5f5f5,stroke:#6638B8,stroke-width:3px
+    style id4 fill:#f5f5f5,stroke:#333,stroke-width:1px
 {{</mermaid >}}
 
 Use Streamlit to visualize your Snowplow Ecommerce data to make it easier to identify patterns and trends in your data.

@@ -27,6 +27,40 @@ import { trackCheckoutStep } from '@snowplow/browser-plugin-snowplow-ecommerce';
 trackCheckoutStep(checkoutStep: CheckoutStep);
 ```
 
+Where `checkoutStep` can have the following attributes:
+
+- **step** - Checkout step index.
+- **shipping_postcode** - Shipping address postcode.
+- **billing_postcode** - Billing address postcode.
+- **shipping_full_address** - Full shipping address.
+- **billing_full_address** - Full billing address.
+- **delivery_provider** - Can be used to discern delivery providers E.g. DHL, PostNL.
+- **delivery_method** - Store pickup, standard delivery, express delivery, international.
+- **coupon_code** - Coupon applied at checkout.
+- **account_type** - Selection of 'existing user' or 'guest checkout'.
+- **payment_method** - Any kind of payment method the user selected to proceed. E.g. Card, PayPal, Alipay.
+- **proof_of_payment** - Invoice or receipt.
+- **marketing_opt_in** - If opted in to marketing campaigns to the email address.
+
+**Example usage:**
+
+```ts
+import { trackCheckoutStep } from "@snowplow/browser-plugin-snowplow-ecommerce";
+
+/* Step 1 - Account type selection */
+trackCheckoutStep({
+  step: 1,
+  account_type: "guest checkout",
+});
+
+/* Step 2 - Billing options selection */
+trackCheckoutStep({
+  step: 2,
+  payment_method: "credit card",
+  proof_of_payment: "invoice",
+});
+```
+
 {{% /tab %}}
 {{% tab name="JavaScript API" %}}
 
@@ -39,10 +73,6 @@ To track a checkout step you can use the `trackCheckoutStep` method with the fol
 
 window.snowplow("trackCheckoutStep:{trackerName}", checkoutStep: CheckoutStep);
 ```
-
-{{% /tab %}}
-
-{{< /tabs >}}
 
 Where `checkoutStep` can have the following attributes:
 
@@ -58,3 +88,24 @@ Where `checkoutStep` can have the following attributes:
 - **payment_method** - Any kind of payment method the user selected to proceed. E.g. Card, PayPal, Alipay.
 - **proof_of_payment** - Invoice or receipt.
 - **marketing_opt_in** - If opted in to marketing campaigns to the email address.
+
+**Example usage:**
+
+```ts
+/* Step 1 - Account type selection */
+window.snowplow("trackCheckoutStep:{trackerName}", {
+  step: 1,
+  account_type: "guest checkout",
+});
+
+/* Step 2 - Billing options selection */
+window.snowplow("trackCheckoutStep:{trackerName}", {
+  step: 2,
+  payment_method: "credit card",
+  proof_of_payment: "invoice",
+});
+```
+
+{{% /tab %}}
+
+{{< /tabs >}}

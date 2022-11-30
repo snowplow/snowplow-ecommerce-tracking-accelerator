@@ -1,8 +1,8 @@
 +++
 title = "Tracking"
 chapter = true
-weight = 5
-pre = "4. "
+weight = 2
+pre = "1. "
 post = ""
 +++
 
@@ -12,14 +12,13 @@ post = ""
 
 {{<mermaid>}}
 flowchart LR
-id1(Track)-->id2(Upload)-->id3(Model)-->id4(Visualise)-->id5(Enrich)-->id6(Next steps)
-style id4 fill:#f5f5f5,stroke:#6638B8,stroke-width:3px
-style id1 fill:#f5f5f5,stroke:#333,stroke-width:1px
-style id3 fill:#f5f5f5,stroke:#333,stroke-width:1px
-style id5 fill:#f5f5f5,stroke:#333,stroke-width:1px
-style id2 fill:#f5f5f5,stroke:#333,stroke-width:1px
-style id6 fill:#f5f5f5,stroke:#333,stroke-width:1px
+    id1(Track)-->id2(Model)-->id3(Visualize)-->id4(Next steps)
+    style id1 fill:#f5f5f5,stroke:#6638B8,stroke-width:3px
+    style id2 fill:#f5f5f5,stroke:#333,stroke-width:1px
+    style id3 fill:#f5f5f5,stroke:#333,stroke-width:1px
+    style id4 fill:#f5f5f5,stroke:#333,stroke-width:1px
 {{</mermaid >}}
+
 
 Get started with sending ecommerce action events using the JavaScript tracker. The tracking API is made to be simple, understandable and feel familiar with other tracking solutions.
 
