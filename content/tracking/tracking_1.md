@@ -1,11 +1,11 @@
 +++
-title = "Setup your tracking"
+title = "Set-up your tracking"
 weight = 1
 +++
 
-Depending on your store's frontend infrastructure and Snowplow setup, you can use either our JavaScript tracker for a `<script>` tag option or our Browser tracker for a more modern web development setup.
+Depending on your store's front-end infrastructure and Snowplow set-up, you can use either our JavaScript tracker for a `<script>` tag option or our Browser tracker for a more modern web development set-up.
 
-In both options, the API is similar with only minor differences in the setup and method calls.
+In both options, the API is similar with only minor differences in the set-up and method calls.
 
 {{< tabs groupId="package manager" >}}
 {{% tab name="Package Manager" %}}

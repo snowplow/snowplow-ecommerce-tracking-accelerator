@@ -85,7 +85,7 @@ Where `product` can have the following attributes:
 | currency | `string` | Currency in which the product is being priced (ISO 4217). | ✅ |
 | price | `number` | Price of the product at the current time. | ✅ |
 | name | `string` | Name or title of the product. | ✘ |
-| category | `string` | Category the product belongs to. Use a consistent separator to express multiple levels. E.g. Woman/Shoes/Sneakers. | ✘ |
+| category | `string` | Category the product belongs to. Use a consistent separator to express multiple levels. E.g. Woman/Shoes/Sneakers. The number of levels is defined by the user. | ✘ |
 | list_price | `number` | Recommended or list price of a product. | ✘ |
 | quantity | `number` | Quantity of the product taking part in the action. Used for Cart events. | ✘ |
 | size | `string` | Size of the product. E.g. XL, XS, M. | ✘ |

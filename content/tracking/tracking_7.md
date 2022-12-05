@@ -24,9 +24,6 @@ setPageType({ type, language, locale });
 {{% /tab %}}
 {{% tab name="JavaScript API" %}}
 
-#### `setPageType`
-
-To set a Page Type context you can use the `setPageType` method with the following attributes:
 
 ```ts
 /* {trackerName} is a placeholder for the initialized tracker on your page.  */
@@ -57,10 +54,6 @@ setEcommerceUser({ id, is_guest, email });
 
 {{% /tab %}}
 {{% tab name="JavaScript API" %}}
-
-#### `setEcommerceUser`
-
-To set an Ecommerce User context you can use the `setEcommerceUser` method with the following attributes:
 
 ```ts
 /* {trackerName} is a placeholder for the initialized tracker on your page.  */
