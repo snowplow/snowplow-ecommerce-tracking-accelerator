@@ -6,7 +6,7 @@ post = ""
 
 Checkout step events are used for tracking the progress and option selections of a user in the checkout funnel. These event can fit any multi-page or single-page checkout scenario and we made sure to provide all sorts of options which can prove useful for further analysis.
 
-![Checkout step](../images/checkout.png)
+![Checkout step](../images/checkout.png?width=60pc)
 
 ---
 
