@@ -37,6 +37,46 @@ trackTransaction({
 });
 ```
 
+- Where `transaction_id` is the ID of the transaction.
+- Where `revenue` is the total value of the transaction.
+- Where `currency` is the currency used for the transaction.
+- Where `payment_method` is the payment method used for the transaction.
+- Where `total_quantity` is the total quantity of items in the transaction.
+- Where `tax` is the total amount of tax on the transaction.
+- Where `shipping` is the total cost of shipping on the transaction.
+- Where `discount_code` is the discount code used.
+- Where `discount_amount` is the discount amount taken off.
+- Where `credit_order` is whether the transaction is a credit order or not.
+- Where `products` is an array of products included on the transaction.
+
+**Example usage:**
+
+```ts
+import { trackTransaction } from "@snowplow/browser-plugin-snowplow-ecommerce";
+
+trackTransaction({
+  transaction_id: "T12345",
+  revenue: 230,
+  currency: "USD",
+  payment_method: "credit_card",
+  total_quantity: 1,
+  tax: 20,
+  shipping: 10,
+  products: [
+    {
+      id: "P125",
+      name: "Baseball T",
+      brand: "Snowplow",
+      category: "Mens/Apparel",
+      price: 200,
+      inventory_status: "in stock",
+      currency: "USD",
+      position: 3,
+    },
+  ],
+});
+```
+
 {{% /tab %}}
 {{% tab name="JavaScript API" %}}
 
@@ -62,10 +102,6 @@ window.snowplow("trackTransaction:{trackerName}", {
 });
 ```
 
-{{% /tab %}}
-
-{{< /tabs >}}
-
 - Where `transaction_id` is the ID of the transaction.
 - Where `revenue` is the total value of the transaction.
 - Where `currency` is the currency used for the transaction.
@@ -77,6 +113,36 @@ window.snowplow("trackTransaction:{trackerName}", {
 - Where `discount_amount` is the discount amount taken off.
 - Where `credit_order` is whether the transaction is a credit order or not.
 - Where `products` is an array of products included on the transaction.
+
+**Example usage:**
+
+```ts
+window.snowplow("trackTransaction:{trackerName}", {
+  transaction_id: "T12345",
+  revenue: 230,
+  currency: "USD",
+  payment_method: "credit_card",
+  total_quantity: 1,
+  tax: 20,
+  shipping: 10,
+  products: [
+    {
+      id: "P125",
+      name: "Baseball T",
+      brand: "Snowplow",
+      category: "Mens/Apparel",
+      price: 200,
+      inventory_status: "in stock",
+      currency: "USD",
+      position: 3,
+    },
+  ],
+});
+```
+
+{{% /tab %}}
+
+{{< /tabs >}}
 
 Where `product` can have the following attributes:
 | attribute | type | description | required |
