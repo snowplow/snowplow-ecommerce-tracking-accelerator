@@ -89,7 +89,7 @@ An example Ecommerce Dashboard with Streamlit
 
 {{% tab name="Streamlit" %}}
 
-!['Streamlit Dashboard Example'](images/streamlit_dashboard.png)
+!['Streamlit Dashboard Example'](images/streamlit_dashboard.png?height=40pc)
 
 {{% /tab %}}
 
