@@ -1,1 +1,5 @@
 public/
+.vscode/*
+build/
+content/visualization/visualization_1.files/streamlit-project-ecommerce/*
+.DS_STORE

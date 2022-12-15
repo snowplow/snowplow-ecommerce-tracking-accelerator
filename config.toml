@@ -1,6 +1,6 @@
-title = "{{ACCELERATOR TEMPLATE}}"
-baseURL = "https://docs.snowplow.io/accelerators/{{YOUR BASE URL}}/"
+title = "Ecommerce"
+baseURL = "https://docs.snowplow.io/accelerators/ecommerce/"
 
 [params]
-  description = "{{ACCELERATOR DESCRIPTION}}"
-  author = "{{AUTHOR NAMES}}"
+  description = "Tutorial for setting up Snowplow ecommerce tracking for your online store"
+  author = "Peter Perlepes, Emiel Verkade, Ryan Hill"
