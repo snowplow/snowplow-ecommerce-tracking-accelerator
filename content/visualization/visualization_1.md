@@ -57,6 +57,6 @@ Run the command below to run the streamlit locally
 streamlit run Dashboard.py
 ```
 
-The dashboard contains a selection of common ecommerce visualizations including shopping behavior, top abandoned products, product list performance and checkout abandonment. This is a great starting point to build further analysis on top of. 
+The dashboard contains a selection of common e-commerce visualizations including shopping behavior, top abandoned products, product list performance and checkout abandonment. This is a great starting point to build further analysis on top of.
 
 !['Streamlit Dashboard Example'](../images/streamlit_dashboard.png?height=40pc)

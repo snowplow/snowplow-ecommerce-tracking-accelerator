@@ -4,7 +4,7 @@ weight = 2
 post = ""
 +++
 
-This step assumes you have data in a table named `ATOMIC.EVENTS` which will be used to run the snowplow-ecommerce dbt package to model Snowplow ecommerce data. 
+This step assumes you have data in a table named `ATOMIC.EVENTS` which will be used to run the snowplow-ecommerce dbt package to model Snowplow e-commerce data.
 
 #### **Step 1:** Set-up Variables
 
@@ -13,8 +13,8 @@ The snowplow_ecommerce dbt package comes with a list of variables, each with a d
 For the sake of simplicity we have selected the variables that you will most likely need to overwrite, the rest can be changed at a later stage if and when it is needed.
 
 - `snowplow__start_date`: The date of the first tracked event.
-- `snowplow__ecommerce_event_names`: List of event names to include in our ecommerce data, default is just `snowplow_ecommerce_action`
-- `snowplow__events`: Variable to overwrite the events table in case it is named differently. 
+- `snowplow__ecommerce_event_names`: List of event names to include in our e-commerce data, default is just `snowplow_ecommerce_action`
+- `snowplow__events`: Variable to overwrite the events table in case it is named differently.
 - `snowplow__number_category_levels`: Variable to overwrite the maximum number of levels you have in your product categories e.g. `books/fiction/magical-fiction` has 3 levels
 - `snowplow__number_checkout_steps`: The index of the checkout step which represents a completed transaction. This is required to enable working checkout funnel analysis.
 

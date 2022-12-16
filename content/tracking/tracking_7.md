@@ -4,7 +4,7 @@ weight = 7
 post = ""
 +++
 
-When tracking actions on an ecommerce store, it can prove useful to be able to add extra and more generic context information such as the Page Type the visitor is currently on or User information for the user completing an action.
+When tracking actions on an e-commerce store, it can prove useful to be able to add extra and more generic context information such as the Page Type the visitor is currently on or User information for the user completing an action.
 
 To do this, we provide you the `setPageType` and `setEcommerceUser` methods, which allow you to set this information on events sent from the Snowplow tracker.
 

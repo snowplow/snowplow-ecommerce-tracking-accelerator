@@ -1,5 +1,5 @@
 +++
-title = "Ecommerce Web Accelerator"
+title = "E-commerce Web Accelerator"
 menuTitle="Introduction"
 chapter = false
 weight = 1
@@ -11,15 +11,15 @@ aliases = [
 ]
 +++
 
+### E-commerce Web Accelerator
 #### Introduction
 
-
-Welcome to the **Ecommerce Web** accelerator. Once you have finished you will have all the required tracking and data infrastructure to measure customer behavior, discover new growth opportunities and optimize your online sales performance for your ecommerce website!
+This accelerator helps you analyze customer behavior, identify potential growth opportunities, and improve your e-commerce website's sales performance.
 
 
 Here you will learn to:
 
-- Set-up the required ecommerce tracking on your website
+- Set-up the required e-commerce tracking on your website
 - Model and Visualize Snowplow data
   - using the [snowplow-ecommerce](https://hub.getdbt.com/snowplow/snowplow_ecommerce/latest/) dbt package and Streamlit
 - Apply these to your own pipeline to gain insights
@@ -29,7 +29,7 @@ Here you will learn to:
 #### Who is this guide for?
 
 - Data practitioners who would like to get familiar with Snowplow data.
-- Data practitioners who want to learn how to use the snowplow-ecommerce dbt package and set-up tracking on their ecommerce store, so they can learn more about visitor and customer behavioral data as quickly as possible.
+- Data practitioners who want to learn how to use the snowplow-ecommerce dbt package and set-up tracking on their e-commerce store, so they can learn more about visitor and customer behavioral data as quickly as possible.
 
 ---
 
@@ -37,7 +37,7 @@ Here you will learn to:
 
 In approximately 1.5 working days (~10 working hours) you can achieve the following:
 
-- **Track -** Set up ecommerce actions tracking on your store
+- **Track -** Set up e-commerce actions tracking on your store
 - **Model -** Configure and run the snowplow-ecommerce data model
 - **Visualize -** Visualize the modeled data with Streamlit
 - **Next steps -** Gain value from your own pipeline data through modeling and visualization
@@ -83,7 +83,7 @@ Please note that the snowplow-ecommerce package currently only support BigQuery,
 
 #### What you will build
 
-An example Ecommerce Dashboard with Streamlit
+An example E-commerce Dashboard with Streamlit
 
 {{< tabs groupId="dashboard_images" >}}
 

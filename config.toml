@@ -2,5 +2,5 @@ title = "Ecommerce"
 baseURL = "https://docs.snowplow.io/accelerators/ecommerce/"
 
 [params]
-  description = "Tutorial for setting up Snowplow ecommerce tracking for your online store"
+  description = "Tutorial for setting up Snowplow e-commerce tracking for your online store"
   author = "Peter Perlepes, Emiel Verkade, Ryan Hill"
