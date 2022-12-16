@@ -11,10 +11,10 @@ aliases = [
 ]
 +++
 
+### Ecommerce Web Accelerator
 #### Introduction
 
-
-Welcome to the **Ecommerce Web** accelerator. Once you have finished you will have all the required tracking and data infrastructure to measure customer behavior, discover new growth opportunities and optimize your online sales performance for your ecommerce website!
+This accelerator guides you to measure customer behavior, discover new growth opportunities and optimize your online sales performance for your ecommerce website.
 
 
 Here you will learn to:
