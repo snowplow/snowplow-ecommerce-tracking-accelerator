@@ -14,7 +14,7 @@ aliases = [
 ### Ecommerce Web Accelerator
 #### Introduction
 
-This accelerator guides you to measure customer behavior, discover new growth opportunities and optimize your online sales performance for your ecommerce website.
+This accelerator helps you analyze customer behavior, identify potential growth opportunities, and improve your ecommerce website's sales performance.
 
 
 Here you will learn to:
