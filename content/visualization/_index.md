@@ -19,4 +19,4 @@ flowchart LR
     style id4 fill:#f5f5f5,stroke:#333,stroke-width:1px
 {{</mermaid >}}
 
-Use Streamlit to visualize your Snowplow Ecommerce data to make it easier to identify patterns and trends in your data.
+Use Streamlit to visualize your Snowplow E-commerce data to make it easier to identify patterns and trends in your data.

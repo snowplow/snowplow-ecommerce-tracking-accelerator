@@ -41,7 +41,7 @@ In addition to the basic tracker, you can add any number of options for using Sn
 
 #### **Step 3:** Configure the tracker to use the `SnowplowEcommercePlugin`
 
-To allow the tracker to use ecommerce methods from the `SnowplowEcommercePlugin`, you need to include during the initialization of the tracker. By adding it on the `plugins` array, you gain access to the full functionality:
+To allow the tracker to use e-commerce methods from the `SnowplowEcommercePlugin`, you need to include during the initialization of the tracker. By adding it on the `plugins` array, you gain access to the full functionality:
 
 ```javascript
 import { newTracker } from "@snowplow/browser-tracker";
@@ -53,7 +53,7 @@ export const tracker = newTracker("sp", "{{Url for Collector}}", {
 });
 ```
 
-Now the tracker has everything required to start collecting ecommerce action data. On the next step we are going to see how to use the available APIs.
+Now the tracker has everything required to start collecting e-commerce action data. On the next step we are going to see how to use the available APIs.
 
 {{% /tab %}}
 {{% tab name="Script Tag" %}}
@@ -109,9 +109,9 @@ In addition to the basic tracker, you can add any number of options for using Sn
 
 #### **Step 4:** Configure the tracker to use the `SnowplowEcommercePlugin`
 
-To add the `SnowplowEcommercePlugin` on the JavaScript tracker and enable the usage of the ecommerce API, you should include it as shown below:
+To add the `SnowplowEcommercePlugin` on the JavaScript tracker and enable the usage of the e-commerce API, you should include it as shown below:
 
-❗❗**NOTE: The script below should be executed **before** any ecommerce API can be called successfully.**
+❗❗**NOTE: The script below should be executed **before** any e-commerce API can be called successfully.**
 
 ```javascript
 window.snowplow(
@@ -121,7 +121,7 @@ window.snowplow(
 );
 ```
 
-Now the tracker has everything required to start collecting ecommerce action data. On the next step we are going to see how to use the available APIs.
+Now the tracker has everything required to start collecting e-commerce action data. On the next step we are going to see how to use the available APIs.
 
 {{% /tab %}}
 {{< /tabs >}}

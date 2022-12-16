@@ -4,7 +4,7 @@ weight = 4.5
 post = ""
 +++
 
-Product List events are used for tracking views and interactions of any kind of list of products on an ecommerce store. These events are more commonly used for the product list pages, but can also be used to track similar list-like elements such as:
+Product List events are used for tracking views and interactions of any kind of list of products on an e-commerce store. These events are more commonly used for the product list pages, but can also be used to track similar list-like elements such as:
 
 - Shop-The-Look lists.
 - Frequently-Bought-With lists.

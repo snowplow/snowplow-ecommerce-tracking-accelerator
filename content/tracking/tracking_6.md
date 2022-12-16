@@ -4,7 +4,7 @@ weight = 6
 post = ""
 +++
 
-Transaction events are used to track the successful completion of a purchase/transaction on your ecommerce store.
+Transaction events are used to track the successful completion of a purchase/transaction on your e-commerce store.
 
 ---
 
