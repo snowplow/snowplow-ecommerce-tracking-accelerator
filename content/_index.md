@@ -62,7 +62,7 @@ section 4. Next steps
 #### Prerequisites
 
 {{% notice tip %}}
-Complete our [Advanced Analytics for Web](https://docs.snowplow.io/accelerators/web/) accelerator if you don't have started collecting web data from your pages yet.
+Complete our [Advanced Analytics for Web](https://docs.snowplow.io/accelerators/web/) accelerator if you haven't yet started collecting data from your website.
 {{% /notice %}}
 
 **Tracking and Enrichment**
