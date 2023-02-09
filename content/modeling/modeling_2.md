@@ -31,7 +31,7 @@ vars:
 ```
 #### **Step 2:** Add the selectors.yml to your project
 
-The web package provides a suite of suggested selectors to help run and test the models.
+The e-commerce package provides a suite of suggested selectors to help run and test the models.
 
 These are defined in the [selectors.yml](https://github.com/snowplow/dbt-snowplow-ecommerce/blob/main/selectors.yml) file within the package, however to use these model selections you will need to copy this file into your own dbt project directory.
 
