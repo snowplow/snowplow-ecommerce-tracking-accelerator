@@ -10,7 +10,7 @@ Add the snowplow-ecommerce package to your `packages.yml` file. The latest versi
 ```yml
 packages:
   - package: snowplow/snowplow_ecommerce
-    version: 0.1.0
+    version: 0.3.0
 ```
 
 ***

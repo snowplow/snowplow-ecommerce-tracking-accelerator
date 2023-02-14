@@ -8,11 +8,24 @@ Streamlit uses Python to build shareable dashboards without the need for front-e
 #### **Step 1:** Clone the repository
 Run the command below to download the example dashboard:
 
+{{< tabs groupId="dwh-select" >}}
+{{% tab name="BigQuery" %}}
+
 ```bash
-git clone --depth 1  --filter=blob:none --sparse https://github.com/snowplow-incubator/snowplow-accelerator-resources.git ; 
+git clone --depth 1  --filter=blob:none --sparse https://github.com/snowplow-incubator/snowplow-accelerator-resources.git ;
+cd snowplow-accelerator-resources
+git sparse-checkout set enhanced-ecommerce-accelerator/bigquery/streamlit
+```
+{{% /tab %}}
+{{% tab name="Snowflake" %}}
+
+```bash
+git clone --depth 1  --filter=blob:none --sparse https://github.com/snowplow-incubator/snowplow-accelerator-resources.git ;
 cd snowplow-accelerator-resources
 git sparse-checkout set enhanced-ecommerce-accelerator/snowflake/streamlit
 ```
+{{% /tab %}}
+{{< /tabs >}}
 
 #### **Step 2:** Install requirements
 Run the command below to install the project requirements and run the virtual environment.
@@ -25,11 +38,17 @@ pipenv shell
 ```
 
 #### **Step 3:** Set-up Database Connection
-Create a secrets file at `.streamlit/secrets.toml` and add your bigquery service account details. Make sure you specify your custom `derived` dataset which will be the source schema for the dashboard.
+Create a secrets file at `.streamlit/secrets.toml` and add your BigQuery/Databricks/Snowflake connection details.
+For BigQuery: make sure you specify your custom `derived` dataset which will be the source schema for the dashboard.
 
 {{% notice warning %}}
 Ensure `secrets.toml` is in `.gitignore` to keep your information safe.
 {{% /notice %}}
+
+{{< tabs groupId="dwh-select" >}}
+{{% tab name="BigQuery" %}}
+
+For BigQuery, we recommend setting up your credentials in a similar way to your dbt `profiles.yml`, as seen [here](https://docs.getdbt.com/reference/warehouse-setups/bigquery-setup#service-account-json)
 
 ```toml
 # .streamlit/secrets.toml
@@ -50,6 +69,26 @@ client_x509_cert_url = "xxx"
 project_id = "xxx"
 dataset = "dbt_xxx_derived"
 ```
+{{% /tab %}}
+{{% tab name="Snowflake" %}}
+
+For Snowflake we recommend setting up your credentials in a similar way to your dbt `profile.yml`, as seen [here](https://docs.getdbt.com/reference/warehouse-setups/snowflake-setup#user--password-authentication)
+
+```toml
+# .streamlit/secrets.toml
+
+[snowflake]
+user = "xxx"
+password = "xxx"
+account = "xxx"
+database = "xxx"
+schema = "xxx" # This should point to your derived schema
+warehouse = "xxx"
+role = "xxx"
+```
+{{% /tab %}}
+{{< /tabs >}}
+
 #### **Step 4:** Run the Streamlit dashboard
 Run the command below to run the streamlit locally
 
@@ -57,6 +96,6 @@ Run the command below to run the streamlit locally
 streamlit run Dashboard.py
 ```
 
-The dashboard contains a selection of common e-commerce visualizations including shopping behavior, top abandoned products, product list performance and checkout abandonment. This is a great starting point to build further analysis on top of. 
+The dashboard contains a selection of common e-commerce visualizations including shopping behavior, top abandoned products, product list performance and checkout abandonment. This is a great starting point to build further analysis on top of.
 
 !['Streamlit Dashboard Example'](../images/streamlit_dashboard.png?height=40pc)
