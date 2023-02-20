@@ -31,7 +31,7 @@ pipenv install
 pipenv shell
 ```
 
-### **Step 3:** Set-up Database Connection
+#### **Step 3:** Set-up Database Connection
 Create a secrets file at `.streamlit/secrets.toml` and add your BigQuery/Databricks/Snowflake connection details.
 For BigQuery: make sure you specify your custom `derived` dataset which will be the source schema for the dashboard.
 
@@ -87,7 +87,7 @@ role = "xxx"
 Edit the warehouse you are using on line 10 of the `Healthcheck_Dashboard.py` file to one of `snowflake` or `bigquery`.
 
 
-#### **Step 54** Run the Streamlit dashboard
+#### **Step 5** Run the Streamlit dashboard
 Run the command below to run the streamlit locally
 
 ```bash
