@@ -87,7 +87,7 @@ role = "xxx"
 Edit the warehouse you are using on line 10 of the `Healthcheck_Dashboard.py` file to one of `snowflake` or `bigquery`.
 
 
-#### **Step 5** Run the Streamlit dashboard
+#### **Step 5:** Run the Streamlit dashboard
 Run the command below to run the streamlit locally
 
 ```bash
