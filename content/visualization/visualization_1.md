@@ -8,29 +8,23 @@ Streamlit uses Python to build shareable dashboards without the need for front-e
 #### **Step 1:** Clone the repository
 Run the command below to download the example dashboard:
 
-{{< tabs groupId="dwh-select" >}}
-{{% tab name="BigQuery" %}}
-
 ```bash
 git clone --depth 1  --filter=blob:none --sparse https://github.com/snowplow-incubator/snowplow-accelerator-resources.git ;
 cd snowplow-accelerator-resources
-git sparse-checkout set enhanced-ecommerce-accelerator/bigquery/streamlit
+git sparse-checkout set enhanced-ecommerce-accelerator/streamlit
 ```
-{{% /tab %}}
-{{% tab name="Snowflake" %}}
+
+Next, move into the streamlit repository
 
 ```bash
-git clone --depth 1  --filter=blob:none --sparse https://github.com/snowplow-incubator/snowplow-accelerator-resources.git ;
-cd snowplow-accelerator-resources
-git sparse-checkout set enhanced-ecommerce-accelerator/snowflake/streamlit
+cd enhanced-ecommerce-accelerator/streamlit
 ```
-{{% /tab %}}
-{{< /tabs >}}
 
 #### **Step 2:** Install requirements
 Run the command below to install the project requirements and run the virtual environment.
 
-❗❗ **This implementation has been tested with the following dependencies: *python=3.9.13, streamlit=1.12.0, pandas_gbq=0.17.9*. If you run into package compatibility issues or encounter any errors try using them to build your own environment.**
+❗❗ **This implementation has been tested with the following dependencies: *python = 3.9.13, streamlit = 1.18.1, pandas = 1.5.3, pandas-gbq = 0.19.1, plotly = 5.13.0, snowflake-connector-python = 3.0.0, pyarrow = 10.0.1* . If you run into package compatibility issues or encounter any errors try using them to build your own environment.**
+
 
 ```bash
 pipenv install
@@ -89,7 +83,11 @@ role = "xxx"
 {{% /tab %}}
 {{< /tabs >}}
 
-#### **Step 4:** Run the Streamlit dashboard
+#### **Step 4:** Specify warehouse
+Edit the warehouse you are using on line 10 of the `Healthcheck_Dashboard.py` file to one of `snowflake` or `bigquery`.
+
+
+#### **Step 5:** Run the Streamlit dashboard
 Run the command below to run the streamlit locally
 
 ```bash
