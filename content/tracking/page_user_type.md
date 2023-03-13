@@ -1,6 +1,6 @@
 +++
 title = "Page Type and User Context"
-weight = 7
+weight = 8
 post = ""
 +++
 
