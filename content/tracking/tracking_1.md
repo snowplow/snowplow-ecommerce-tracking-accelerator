@@ -71,7 +71,7 @@ Add the below snippet to all of the pages you would like to use Snowplow trackin
 Place the `<script>` tag into the `<head>` element of your pages:
 
 ```html
-<script type="text/javascript" async="1">
+<script type="text/javascript">
   (function (p, l, o, w, i, n, g) {
     if (!p[i]) {
       p.GlobalSnowplowNamespace = p.GlobalSnowplowNamespace || [];
@@ -115,9 +115,9 @@ To add the `SnowplowEcommercePlugin` on the JavaScript tracker and enable the us
 
 ```javascript
 window.snowplow(
-  "sp:addPlugin",
+  "addPlugin:sp",
   "https://cdn.jsdelivr.net/npm/@snowplow/browser-plugin-snowplow-ecommerce@3/dist/index.umd.min.js",
-  ["snowplowEcommerceTracking", "SnowplowEcommercePlugin"]
+  ["snowplowEcommerceAccelerator", "SnowplowEcommercePlugin"]
 );
 ```
 
