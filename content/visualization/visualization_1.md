@@ -81,10 +81,26 @@ warehouse = "xxx"
 role = "xxx"
 ```
 {{% /tab %}}
+{{% tab name="Databricks" %}}
+
+For Databricks we recommend setting up your credentials in a similar way to your dbt `profile.yml`, as seen [here](https://docs.getdbt.com/reference/warehouse-setups/databricks-setup#set-up-a-databricks-target)
+
+```toml
+# .streamlit/secrets.toml
+
+[databricks]
+databricks_server_hostname = "xxx"
+databricks_http_path = "xxx"
+databricks_token = "xxx"
+schema = "xxx" # This should point to your derived schema
+catalog = "xxx"
+
+```
+{{% /tab %}}
 {{< /tabs >}}
 
 #### **Step 4:** Specify warehouse
-Edit the warehouse you are using on line 10 of the `Healthcheck_Dashboard.py` file to one of `snowflake` or `bigquery`.
+Edit the warehouse you are using on line 10 of the `Healthcheck_Dashboard.py` file to one of `snowflake`, `bigquery`, or `databricks`.
 
 
 #### **Step 5:** Run the Streamlit dashboard
