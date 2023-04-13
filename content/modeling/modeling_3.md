@@ -9,7 +9,7 @@ Processed data should now be loaded into your warehouse. In this section we will
 ***
 
 #### **Step 1:** Check the output schemas
-Head to the SQL editor of your choice (e.g.: BigQuery Web UI) to check the model's output. You should be able to see three new schemas created:
+Head to the SQL editor of your choice to check the model's output. You should be able to see three new schemas created:
 1. [your_custom_schema]_***scratch***: drop and recompute models that aid the incremental run
 2. [your_custom_schema]_***derived***: main output models you can use in your downstream models and reporting
 3. [your_custom_schema]_***snowplow_manifest***: tables that help the integrity and core incremental logic of the model

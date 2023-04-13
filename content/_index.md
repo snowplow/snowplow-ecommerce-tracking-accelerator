@@ -75,11 +75,7 @@ Complete our [Advanced Analytics for Web](https://docs.snowplow.io/accelerators/
 - dbt CLI installed / dbt Cloud account available
   - New dbt project created and configured
 - Python 3 Installed
-- BigQuery account and a user with access to create schemas and tables
-
-{{% notice info %}}
-Please note that the snowplow-ecommerce package currently only support BigQuery, but further adapter support is coming soon!
-{{% /notice %}}
+- BigQuery, Snowflake, or Databricks account and a user with access to create schemas and tables
 
 #### What you will build
 
