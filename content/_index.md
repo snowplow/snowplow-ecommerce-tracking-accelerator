@@ -77,6 +77,11 @@ Complete our [Advanced Analytics for Web](https://docs.snowplow.io/accelerators/
 - Python 3 Installed
 - BigQuery, Snowflake, or Databricks account and a user with access to create schemas and tables
 
+
+{{% notice tip %}}
+The tracking and dbt package are supported on Redshift as well as the above warehouses, but the Visualization in this accelerator is not set up to connect to a Redshift warehouse.
+{{% /notice %}}
+
 #### What you will build
 
 An example E-commerce Dashboard with Streamlit
