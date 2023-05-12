@@ -131,7 +131,7 @@ import { trackEnhancedEcommerceCheckoutStep } from '@snowplow/browser-plugin-sno
 trackEnhancedEcommerceCheckoutStep( {{dataLayer.ecommerce reference}}, checkoutOption);
 ```
 
-- Where `checkoutOption` is a key value pair object of available [Snowplow checkout options](https://github.com/snowplow/iglu-central/trenhancedecommerce/master/schemas/com.snowplowanalytics.snowplow.ecommerce/checkout_step/jsonschema), except `step` which is retrieved from the dataLayer directly.
+- Where `checkoutOption` is a key value pair object of available [Snowplow checkout options](https://github.com/snowplow/iglu-central/tree/master/schemas/com.snowplowanalytics.snowplow.ecommerce/checkout_step/jsonschema), except `step` which is retrieved from the dataLayer directly.
 
 #### Measuring Purchases
 
@@ -248,7 +248,7 @@ This method corresponds to the equivalent Enhanced Ecommerce [checkout event](ht
 window.snowplow("trackEnhancedEcommerceCheckoutStep:{trackerName}",  {{dataLayer.ecommerce reference}}, checkoutOption);
 ```
 
-- Where `checkoutOption` is a key value pair object of available [Snowplow checkout options](https://github.com/snowplow/iglu-central/trenhancedecommerce/master/schemas/com.snowplowanalytics.snowplow.ecommerce/checkout_step/jsonschema), except `step` which is retrieved from the dataLayer directly.
+- Where `checkoutOption` is a key value pair object of available [Snowplow checkout options](https://github.com/snowplow/iglu-central/tree/master/schemas/com.snowplowanalytics.snowplow.ecommerce/checkout_step), except `step` which is retrieved from the dataLayer directly.
 
 #### Measuring Purchases
 
@@ -258,7 +258,8 @@ This method corresponds to the equivalent Enhanced Ecommerce [purchase event](ht
 /* {trackerName} is a placeholder for the initialized tracker on your page.  */
 
 window.snowplow("trackEnhancedEcommercePurchase:{trackerName}",  {{dataLayer.ecommerce reference}}, {
-    currency?: string
+    paymentMethod: string,
+    currency?: string,
 });
 ```
 
@@ -376,7 +377,7 @@ This method corresponds to the equivalent [begin_checkout event](https://develop
 ```ts
 import { trackGA4BeginCheckout } from '@snowplow/browser-plugin-snowplow-ecommerce';
 
-trackGA4BeginCheckout(step, {
+trackGA4BeginCheckout({
     step?: number
 });
 ```
