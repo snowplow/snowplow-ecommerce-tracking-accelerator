@@ -22,7 +22,7 @@ To overwrite these, add the following snippet to the `dbt_project.yml`:
 
 ```yml
 vars:
-  snowplow_web:
+  snowplow_ecommerce:
     snowplow__start_date: '2022-10-01'
     snowplow__ecommerce_event_names: ['snowplow_ecommerce_action']
     snowplow__events: 'atomic.events'
