@@ -111,7 +111,7 @@ window.snowplow("trackRefund:{trackerName}", {
 {{% tab name="Node.js" %}}
 #### Track refunds using a self describing event
 
-To track refunds in the Node.js tracker, you can use the `buildSelfDescribingEvents` method together with the correct parameters for the refund event.
+To track refunds in the Node.js tracker, you can use the `buildSelfDescribingEvent` method together with the correct parameters for the refund event.
 
 ```ts
 /* Where `t` is a placeholder for the initialized tracker instance on your application.  */
@@ -184,7 +184,7 @@ t.track(buildSelfDescribingEvent({
 ]));
 ```
 
-To learn more about tracking self describing events in Node.js take a look at the `buildSelfDescribingEvents` [documentation](https://docs.snowplow.io/docs/collecting-data/collecting-from-own-applications/javascript-trackers/node-js-tracker/node-js-tracker-v3/tracking-events/#track-self-describing-events-withbuildselfdescribingevent).
+To learn more about tracking self describing events in Node.js take a look at the `buildSelfDescribingEvent` [documentation](https://docs.snowplow.io/docs/collecting-data/collecting-from-own-applications/javascript-trackers/node-js-tracker/node-js-tracker-v3/tracking-events/#track-self-describing-events-withbuildselfdescribingevent).
 
 {{% /tab %}}
 
