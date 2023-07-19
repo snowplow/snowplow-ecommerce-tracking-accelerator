@@ -4,11 +4,11 @@ weight = 2
 post = ""
 +++
 
-This step assumes you have data in a table named `ATOMIC.EVENTS` which will be used to run the snowplow-ecommerce dbt package to model Snowplow e-commerce data.
+> This step assumes you have data in a table named `ATOMIC.EVENTS` which will be used to run the snowplow-ecommerce dbt package to model Snowplow e-commerce data.
 
 #### **Step 1:** Set-up Variables
 
-The snowplow_ecommerce dbt package comes with a list of variables, each with a default value that you may need to overwrite in your own dbt project's `dbt_project.yml` file. For details you can have a look at the installed package's default variables which can be found at `[dbt_project_name]/dbt_packages/snowplow_ecommerce/dbt_project.yml` or check out the [package docs](https://docs.snowplow.io/docs/modeling-your-data/modeling-your-data-with-dbt/).
+The snowplow_ecommerce dbt package comes with a list of variables, each with a default value that you may need to overwrite in your own dbt project's `dbt_project.yml` file. For details you can have a look at our [docs](https://docs.snowplow.io/docs/modeling-your-data/modeling-your-data-with-dbt/dbt-configuration/ecommerce/) which contains descriptions and default values of each variable, or you can look in the installed package's project file which can be found at(https://docs.snowplow.io/docs/modeling-your-data/modeling-your-data-with-dbt/).
 
 For the sake of simplicity we have selected the variables that you will most likely need to overwrite, the rest can be changed at a later stage if and when it is needed.
 
@@ -31,7 +31,7 @@ vars:
 ```
 #### **Step 2:** Add the selectors.yml to your project
 
-The e-commerce package provides a suite of suggested selectors to help run and test the models.
+The e-commerce package provides a suite of suggested selectors to help run and test the models, these group our (and any custom) models together in a single identifier.
 
 These are defined in the [selectors.yml](https://github.com/snowplow/dbt-snowplow-ecommerce/blob/main/selectors.yml) file within the package, however to use these model selections you will need to copy this file into your own dbt project directory.
 
