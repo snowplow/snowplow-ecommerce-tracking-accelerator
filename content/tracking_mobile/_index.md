@@ -1,8 +1,8 @@
 +++
-title = "Tracking"
+title = "Tracking on mobile"
 chapter = true
-weight = 2
-pre = "1. "
+weight = 3
+pre = "2. "
 post = ""
 +++
 
@@ -20,6 +20,6 @@ flowchart LR
 {{</mermaid >}}
 
 
-Get started with sending e-commerce action events using the JavaScript tracker. The tracking API is made to be simple, understandable, and feel familiar with other Snowplow tracking solutions
+Get started with sending e-commerce action events using the Android and iOS trackers. The tracking API is very similar to that of the JavaScript trackers.
 
-Once set-up, you will be able to send a full set of e-commerce action data to your Snowplow pipeline.
+Once set up, you will be able to send a full set of e-commerce action data to your Snowplow pipeline.
