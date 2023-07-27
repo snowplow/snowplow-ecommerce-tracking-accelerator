@@ -4,193 +4,156 @@ weight = 7
 post = ""
 +++
 
-Transaction refund events can be used to track products, or transactions as a whole, which ultimately ended on a refund request.
+Transaction refund events can be used to track products, or transactions as a whole, that ultimately ended on a refund request.
 
 ---
 
 #### Tracking refunds
 
-In this section, we will showcase how to track a refund request for a transaction. In many cases, refunds are completed through a backend system and not the website frontend, that is why we also showcase a couple of server-side language examples. You can use any of our trackers to achieve the same result.
+In this section, we will showcase how to track a refund request for a transaction. In many cases, refunds are completed through a backend system. You can use any of our trackers to achieve the same result, by creating a custom refund event type based off `SelfDescribing` events.
 
-{{< tabs groupId="select_js" >}}
-{{% tab name="Browser API" %}}
+{{< tabs groupId="select_mobile" >}}
+{{% tab name="Swift API" %}}
 
-#### `trackRefund`
+#### `RefundEvent`
 
-To track a refund you can use the `trackRefund` method with the following attributes:
+To track a refund you can use the `RefundEvent` with the following attributes:
 
-```ts
-import { trackRefund } from "@snowplow/browser-plugin-snowplow-ecommerce";
-
-trackRefund({
-  transaction_id,
-  currency,
-  refund_amount,
-  refund_reason,
-  products,
-});
+```swift
+RefundEvent(
+  transactionId: String,
+  currency: String,
+  refundAmount: Number,
+  refundReason: String?,
+  products: [ProductEntity]?,
+);
 ```
 
-- Where `transaction_id` is the ID of the transaction to be refunded.
+- Where `transactionId` is the ID of the transaction to be refunded.
 - Where `currency` is the currency used for the transaction.
-- Where `refund_amount` is the monetary amount that was refunded.
-- Where `refund_reason` is the reason the refund took place.
+- Where `refundAmount` is the monetary amount that was refunded.
+- Where `refundReason` is the reason the refund took place.
 - Where `products` is the array of products which were refunded on the transaction. Refunds might be partial, so only the products that were refunded should be sent.
 
 **Example usage:**
 
-```ts
-import { trackRefund } from "@snowplow/browser-plugin-snowplow-ecommerce";
-
-trackRefund({
-  transaction_id: "T12345",
+```swift
+let product = ProductEntity(
+  id: "P125", 
+  name: "Baseball T",
+  brand: "Snowplow",
+  category: "Mens/Apparel",
+  price: 200,
+  currency: "USD"
+)
+let event = RefundEvent(
+  transactionId: "id-123", // use the transaction ID from the original Transaction event
+  refundAmount: 200, 
   currency: "USD",
-  refund_amount: 200,
-  refund_reason: "false_size",
-  products: [
-    {
-      id: "P125",
-      name: "Baseball T",
-      brand: "Snowplow",
-      category: "Mens/Apparel",
-      price: 200,
-      currency: "USD",
-    },
-  ],
-});
+  products: [product]
+)
+
+tracker.track(event)
 ```
 
 {{% /tab %}}
-{{% tab name="JavaScript API" %}}
+{{% tab name="Kotlin API" %}}
 
-#### `trackRefund`
+#### `RefundEvent`
 
-To track a refund you can use the `trackRefund` method with the following attributes:
+To track a refund you can use the `RefundEvent` with the following attributes:
 
-```ts
-/* {trackerName} is a placeholder for the initialized tracker on your page.  */
-
-window.snowplow("trackRefund:{trackerName}", {
-  transaction_id,
-  currency,
-  refund_amount,
-  refund_reason,
-  products,
-});
+```kotlin
+RefundEvent(
+  transactionId: String,
+  currency: String,
+  refundAmount: Number,
+  refundReason: String?,
+  products: List<ProductEntity>?,
+);
 ```
 
-- Where `transaction_id` is the ID of the transaction to be refunded.
+- Where `transactionId` is the ID of the transaction to be refunded.
 - Where `currency` is the currency used for the transaction.
-- Where `refund_amount` is the monetary amount that was refunded.
-- Where `refund_reason` is the reason the refund took place.
+- Where `refundAmount` is the monetary amount that was refunded.
+- Where `refundReason` is the reason the refund took place.
 - Where `products` is the array of products which were refunded on the transaction. Refunds might be partial, so only the products that were refunded should be sent.
 
 **Example usage:**
 
-```ts
-window.snowplow("trackRefund:{trackerName}", {
-  transaction_id: "T12345",
-  currency: "USD",
-  refund_amount: 200,
-  refund_reason: "false_size",
-  products: [
-    {
-      id: "P125",
-      name: "Baseball T",
-      brand: "Snowplow",
-      category: "Mens/Apparel",
-      price: 200,
-      currency: "USD",
-    },
-  ],
-});
+```kotlin
+val product = ProductEntity(
+  id = "P125", 
+  name = "Baseball T",
+  brand = "Snowplow",
+  category = "Mens/Apparel",
+  price = 200,
+  currency = "USD"
+)
+val event = RefundEvent(
+  transactionId = "id-123", // use the transaction ID from the original Transaction event
+  refundAmount = 200, 
+  currency = "USD",
+  products = listOf(product)
+)
+
+tracker.track(event)
 ```
 
 {{% /tab %}}
+{{% tab name="Java API" %}}
 
-{{% tab name="Node.js" %}}
-#### Track refunds using a self describing event
+#### `RefundEvent`
 
-To track refunds in the Node.js tracker, you can use the `buildSelfDescribingEvent` method together with the correct parameters for the refund event.
+To track a refund you can use the `RefundEvent` with the following attributes:
 
-```ts
-/* Where `t` is a placeholder for the initialized tracker instance on your application.  */
-
-t.track(buildSelfDescribingEvent({
-  event: {
-    schema: "iglu:com.snowplowanalytics.snowplow.ecommerce/snowplow_ecommerce_action/jsonschema/1-0-1",
-    data: {
-      type: "refund"
-    }
-  }
-}, [
-  /* Refund context */
-  {
-    schema: "iglu:com.snowplowanalytics.snowplow.ecommerce/refund/jsonschema/1-0-0",
-    data: { 
-      /* ...Refund data */
-    }
-  },
-  /* Product context */
-  {
-    schema: "iglu:com.snowplowanalytics.snowplow.ecommerce/product/jsonschema/1-0-0",
-    data: {
-      /* ...Product data */
-    }
-  }
-]));
+```java
+RefundEvent(
+  transactionId: String,
+  currency: String,
+  refundAmount: Number,
+  refundReason: String?,
+  products: List<ProductEntity>?,
+);
 ```
-Where refund data can include:
-- `transaction_id` as the ID of the transaction to be refunded.
-- `currency` as the currency used for the transaction.
-- `refund_amount` as the monetary amount that was refunded.
-- `refund_reason` as the reason the refund took place.
-For each product taking part in the refund process, an additional product data context is added on the contexts to be sent with the event.
 
+- Where `transactionId` is the ID of the transaction to be refunded.
+- Where `currency` is the currency used for the transaction.
+- Where `refundAmount` is the monetary amount that was refunded.
+- Where `refundReason` is the reason the refund took place.
+- Where `products` is the array of products which were refunded on the transaction. Refunds might be partial, so only the products that were refunded should be sent.
 
 **Example usage:**
 
-```ts
-/* Where `t` is a placeholder for the initialized tracker instance on your application.  */
+```java
+ProductEntity product = new ProductEntity(
+  "P125", // id
+  "Mens/Apparel",  // category
+  "USD", // currency
+  200, // price
+  null, // listPrice
+  "Baseball T", // name
+  null, // quantity
+  null, // size
+  null, // variant
+  "Snowplow" // brand
+);
+RefundEvent event = new RefundEvent(
+    "id-123", // id; use the transaction ID from the original Transaction event
+    200, // refundAmount
+    "USD", // currency
+    null, // refundReason
+    Arrays.asList(product) // products
+);
 
-t.track(buildSelfDescribingEvent({
-  event: {
-    schema: "iglu:com.snowplowanalytics.snowplow.ecommerce/snowplow_ecommerce_action/jsonschema/1-0-1",
-    data: {
-      type: "refund"
-    }
-  }
-}, [
-  {
-    schema: "iglu:com.snowplowanalytics.snowplow.ecommerce/refund/jsonschema/1-0-0",
-    data: { 
-      refund_amount: 200,
-      currency: "USD", 
-      transaction_id: "T12345", 
-      refund_reason: "false_size" 
-    }
-  },
-  {
-    schema: "iglu:com.snowplowanalytics.snowplow.ecommerce/product/jsonschema/1-0-0",
-    data: {
-      id: "P125",
-      name: "Baseball T",
-      brand: "Snowplow",
-      category: "Mens/Apparel",
-      price: 200,
-      currency: "USD",
-    }
-  }
-]));
+tracker.track(event);
 ```
-
-To learn more about tracking self describing events in Node.js take a look at the `buildSelfDescribingEvent` [documentation](https://docs.snowplow.io/docs/collecting-data/collecting-from-own-applications/javascript-trackers/node-js-tracker/node-js-tracker-v3/tracking-events/#track-self-describing-events-withbuildselfdescribingevent).
 
 {{% /tab %}}
 
 {{< /tabs >}}
 
-Where `product` can have the following attributes:
+Where `ProductEntity` can have the following attributes:
 | attribute | type | description | required |
 | :--------------: | :------: | :----------------------------------------------------------------------------------------------------------------: | :------: |
 | id | `string` | SKU or product ID. | ✅ |

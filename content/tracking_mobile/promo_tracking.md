@@ -6,7 +6,7 @@ post = ""
 
 Internal promotion events are used for tracking views and interactions with internal promotion content on your e-commerce store. Such content can be:
 
-- Hero banners/sliders on the homepage, category page etc.
+- Hero banners/sliders on the home screen, category screen etc.
 - Sale specific banners e.g. seasonal sales, bundle discounts, free shipping.
 - Category promotion on standard layout slots.
 
@@ -18,81 +18,117 @@ Internal promotion events are used for tracking views and interactions with inte
 
 In this section, we will showcase how to track promotion views.
 
-{{< tabs groupId="select_js" >}}
-{{% tab name="Browser API" %}}
+{{< tabs groupId="select_mobile" >}}
+{{% tab name="Swift API" %}}
 
-#### `trackPromotionView`
+#### `PromotionViewEvent`
 
-To track a promotion view you can use the `trackPromotionView` method with the following attributes:
+To track a promotion view you can use the `PromotionViewEvent` with the following attributes:
 
-```ts
-import { trackPromotionView } from '@snowplow/browser-plugin-snowplow-ecommerce';
-
-trackPromotionView(promotion: Promotion);
+```swift
+PromotionViewEvent(promotion: PromotionEntity)
 ```
 
 - Where `promotion` is the description of the promotion currently being viewed.
 
 **Example usage:**
 
-```ts
-import { trackPromotionView } from "@snowplow/browser-plugin-snowplow-ecommerce";
-
+```swift
 /* Carousel slide 1 viewed */
-trackPromotionView({ 
-    id: 'IP1234',
-    name: 'promo_winter',
-    type: 'carousel',
+let promotion1 = PromotionEntity(
+    id: "IP1234",
+    name: "promo_winter",
+    type: "carousel",
     position: 1,
-    product_ids: ['P1234'],
-});
+    productIds: ["P1234"]
+)
+tracker.track(PromotionViewEvent(promotion: promotion1))
 
 /* On carousel slide 2 view */
-trackPromotionView({ 
-    id: 'IP1234',
-    name: 'promo_winter',
-    type: 'carousel',
+let promotion2 = PromotionEntity(
+    id: "IP1234",
+    name: "promo_winter",
+    type: "carousel",
     position: 2,
-    product_ids: ['P1235'],
-});
+    productIds: ["P1235"]
+)
+tracker.track(PromotionViewEvent(promotion: promotion2))
 ```
 
 {{% /tab %}}
-{{% tab name="JavaScript API" %}}
+{{% tab name="Kotlin API" %}}
 
-#### `trackPromotionView`
+#### `PromotionViewEvent`
 
-To track a promotion view you can use the `trackPromotionView` method with the following attributes:
+To track a promotion view you can use the `PromotionViewEvent` with the following attributes:
 
-```ts
-/* {trackerName} is a placeholder for the initialized tracker on your page.  */
-
-window.snowplow("trackPromotionView:{trackerName}", promotion: Promotion);
+```kotlin
+PromotionViewEvent(promotion: PromotionEntity)
 ```
 
 - Where `promotion` is the description of the promotion currently being viewed.
 
 **Example usage:**
 
-```ts
+```kotlin
 /* Carousel slide 1 viewed */
-window.snowplow("trackPromotionView:{trackerName}", { 
-    id: 'IP1234',
-    name: 'promo_winter',
-    type: 'carousel',
-    position: 1,
-    product_ids: ['P1234'],
-});
+val promotion1 = PromotionEntity(
+    id = "IP1234",
+    name = "promo_winter",
+    type = "carousel",
+    position = 1,
+    productIds = listOf("P1234")
+)
+tracker.track(PromotionViewEvent(promotion1))
 
 /* On carousel slide 2 view */
-window.snowplow("trackPromotionView:{trackerName}", { 
-    id: 'IP1234',
-    name: 'promo_winter',
-    type: 'carousel',
-    position: 2,
-    product_ids: ['P1235'],
-});
+val promotion2 = PromotionEntity(
+    id = "IP1234",
+    name = "promo_winter",
+    type = "carousel",
+    position = 2,
+    productIds = listOf("P1235")
+)
+tracker.track(PromotionViewEvent(promotion2))
+```
 
+{{% /tab %}}
+{{% tab name="Java API" %}}
+
+#### `PromotionViewEvent`
+
+To track a promotion view you can use the `PromotionViewEvent` with the following attributes:
+
+```java
+PromotionViewEvent(promotion: PromotionEntity)
+```
+
+- Where `promotion` is the description of the promotion currently being viewed.
+
+**Example usage:**
+
+```java
+/* Carousel slide 1 viewed */
+PromotionEntity promotion1 = new PromotionEntity(
+    "IP1234", // id
+    "promo_winter", // name
+    Arrays.asList("P1234"), // productIds
+    1, // position
+    null, // creativeId
+    "carousel" // type
+)
+tracker.track(new PromotionViewEvent(promotion1))
+
+/* On carousel slide 2 view */
+PromotionEntity promotion2 = new PromotionEntity(
+    "IP1234", // id
+    "promo_winter", // name
+    Arrays.asList("P1235"), // productIds
+    2, // position
+    null, // creativeId
+    "carousel" // type
+)
+tracker.track(new PromotionViewEvent(promotion2))
 ```
 
 {{% /tab %}}
@@ -103,74 +139,99 @@ window.snowplow("trackPromotionView:{trackerName}", {
 
 In this section, we will showcase how to track a click/selection of an internal promotion.
 
-{{< tabs groupId="select_js" >}}
-{{% tab name="Browser API" %}}
+{{< tabs groupId="select_mobile" >}}
+{{% tab name="Swift API" %}}
 
-#### `trackPromotionClick`
+#### `PromotionClickEvent`
 
-To track a click/selection of an internal promotion you can use the `trackPromotionClick` method with the following attributes:
+To track a click/selection of an internal promotion you can use the `PromotionClickEvent` with the following attributes:
 
-```ts
-import { trackPromotionClick } from "@snowplow/browser-plugin-snowplow-ecommerce";
-
-trackPromotionClick(promotion: Promotion);
+```swift
+PromotionClickEvent(promotion: PromotionEntity);
 ```
 
 - Where `promotion` is the description of the promotion clicked/selected.
 
 **Example usage:**
 
-```ts
-import { trackPromotionClick } from "@snowplow/browser-plugin-snowplow-ecommerce";
-
-trackPromotionClick({ 
-    id: 'IP1234',
-    name: 'promo_winter',
-    type: 'carousel',
+```swift
+let promotion = PromotionEntity(
+    id: "IP1234",
+    name: "promo_winter",
+    type: "carousel",
     position: 1,
-    product_ids: ['P1234'],
-});
+    productIds: ["P1234"]
+)
+
+tracker.track(PromotionViewEvent(promotion: promotion))
 ```
 
 {{% /tab %}}
-{{% tab name="JavaScript API" %}}
+{{% tab name="Kotlin API" %}}
 
-#### `trackPromotionClick`
+#### `PromotionClickEvent`
 
-To track a click/selection of an internal promotion you can use the `trackPromotionClick` method with the following attributes:
+To track a click/selection of an internal promotion you can use the `PromotionClickEvent` with the following attributes:
 
-```ts
-/* {trackerName} is a placeholder for the initialized tracker on your page.  */
-
-window.snowplow("trackPromotionClick:{trackerName}", promotion: Promotion);
+```kotlin
+PromotionClickEvent(promotion: PromotionEntity);
 ```
 
 - Where `promotion` is the description of the promotion clicked/selected.
 
 **Example usage:**
 
-```ts
-window.snowplow("trackPromotionClick:{trackerName}", { 
-    id: 'IP1234',
-    name: 'promo_winter',
-    type: 'carousel',
-    position: 1,
-    product_ids: ['P1234'],
-});
+```kotlin
+val promotion = PromotionEntity(
+    id = "IP1234",
+    name = "promo_winter",
+    type = "carousel",
+    position = 1,
+    productIds = listOf("P1234")
+)
+
+tracker.track(PromotionViewEvent(promotion))
+```
+
+{{% /tab %}}
+{{% tab name="Java API" %}}
+
+#### `PromotionClickEvent`
+
+To track a click/selection of an internal promotion you can use the `PromotionClickEvent` with the following attributes:
+
+```java
+PromotionClickEvent(promotion: PromotionEntity);
+```
+
+- Where `promotion` is the description of the promotion clicked/selected.
+
+**Example usage:**
+
+```java
+PromotionEntity promotion = new PromotionEntity(
+    "IP1234", // id
+    "promo_winter", // name
+    Arrays.asList("P1234"), // productIds
+    1, // position
+    null, // creativeId
+    "carousel" // type
+)
+tracker.track(new PromotionViewEvent(promotion))
 ```
 
 {{% /tab %}}
 
 {{< /tabs >}}
 
-Where `promotion` can have the following attributes:
+Where `PromotionEntity` can have the following attributes:
 
 |    attribute     |   type   |                                                    description                                                     | required |
 | :--------------: | :------: | :----------------------------------------------------------------------------------------------------------------: | :------: |
 |        id        | `string` |                                                 ID of the promotion.                                                 |    ✅    |
 |     name     | `string` |                             Friendly name for the promotion.                              |    ✘    |
-|      product_ids       | `string[]` |                                     Array of SKUs or product IDs showcased in the promotion.                                      |    ✘    |
+|      productIds       | `string[]` |                                     Array of SKUs or product IDs showcased in the promotion.                                      |    ✘    |
 |       position       | `number` |                                           position the promotion was presented in a list of promotions E.g. in a slider.                                            |    ✘     |
-|     creative_id     | `string` | Identifier/Name/Url for the creative presented on the promotion. |    ✘     |
+|     creativeId     | `string` | Identifier/Name/Url for the creative presented on the promotion. |    ✘     |
 |    type    | `string` |                                      Type of the promotion delivery mechanism. E.g. popup, banner, intra-content.                                       |    ✘     |
 |     slot     | `string` |  The website slot in which the promotional content was added to. E.g. Identifier for slot sidebar-1, intra-content-2.  |    ✘     |
