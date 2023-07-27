@@ -14,58 +14,82 @@ Product view events are commonly used to track a user visiting a product page.
 
 In this section, we will showcase how to track product view events.
 
-{{< tabs groupId="select_js" >}}
-{{% tab name="Browser API" %}}
+{{< tabs groupId="select_mobile" >}}
+{{% tab name="Swift API" %}}
 
-#### `trackProductView`
+#### `ProductViewEvent`
 
-To track a product view you can use the `trackProductView` method with the following attributes:
+To track a product view you can use the `ProductViewEvent` with the following attributes:
 
-```ts
-import { trackProductView } from '@snowplow/browser-plugin-snowplow-ecommerce';
-
-trackProductView(product: Product);
+```swift
+ProductViewEvent(product: ProductEntity)
 ```
+- Where `product` is the product being viewed.
 
 **Example usage:**
 
-```ts
-import { trackProductView } from "@snowplow/browser-plugin-snowplow-ecommerce";
+```swift
+let product = ProductEntity(
+  id: "plow2", 
+  category: "snow.clearance.ploughs.large", 
+  currency: "NOK", 
+  price: 5000
+)
+let event = ProductViewEvent(product: product)
 
-trackProductView({
-    id: "P125",
-    name: "Baseball T",
-    brand: "Snowplow",
-    category: "Mens/Apparel",
-    price: 200,
-    currency: "USD",
-});
+tracker.track(event)
 ```
 
 {{% /tab %}}
-{{% tab name="JavaScript API" %}}
+{{% tab name="Kotlin API" %}}
 
-#### `trackProductView`
+#### `ProductViewEvent`
 
-To track a product view you can use the `trackProductView` method with the following attributes:
+To track a product view you can use the `ProductViewEvent` with the following attributes:
 
-```ts
-/* {trackerName} is a placeholder for the initialized tracker on your page.  */
-
-window.snowplow("trackProductView:{trackerName}", product: Product);
+```kotlin
+ProductViewEvent(product: ProductEntity)
 ```
+- Where `product` is the product being viewed.
 
 **Example usage:**
 
-```ts
-window.snowplow("trackProductView:{trackerName}", {
-    id: "12345",
-    name: "Baseball T",
-    brand: "Snowplow",
-    category: "apparel",
-    price: 200,
-    currency: "USD",
-});
+```kotlin
+val product = ProductEntity(
+    id = "plow2", 
+    category = "snow.clearance.ploughs.large", 
+    currency = "NOK", 
+    price = 5000
+)
+val event = ProductViewEvent(product)
+
+tracker.track(event)
+```
+
+{{% /tab %}}
+{{% tab name="Java API" %}}
+
+#### `ProductViewEvent`
+
+To track a product view you can use the `ProductViewEvent` with the following attributes:
+
+```java
+ProductViewEvent(product: ProductEntity);
+```
+- Where `product` is the product being viewed.
+
+**Example usage:**
+
+```java
+ProductViewEvent event = new ProductViewEvent(new ProductEntity(
+    "plow2", // id
+    "snow.clearance.ploughs.large",  // category
+    "NOK", // currency
+    5000 // price
+  )
+); 
+
+tracker.track(event);
 ```
 
 {{% /tab %}}

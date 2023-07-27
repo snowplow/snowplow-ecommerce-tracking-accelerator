@@ -4,7 +4,7 @@ weight = 4.5
 post = ""
 +++
 
-Product List events are used for tracking views and interactions of any kind of list of products on an e-commerce store. These events are more commonly used for the product list pages, but can also be used to track similar list-like elements such as:
+Product List events are used for tracking views and interactions of any kind of list of products on an e-commerce store. These events are more commonly used for the product list screens, but can also be used to track similar list-like elements such as:
 
 - Shop-The-Look lists.
 - Frequently-Bought-With lists.
@@ -19,17 +19,15 @@ Product List events are used for tracking views and interactions of any kind of 
 
 In this section, we will showcase how to track product list views.
 
-{{< tabs groupId="select_js" >}}
-{{% tab name="Browser API" %}}
+{{< tabs groupId="select_mobile" >}}
+{{% tab name="Swift API" %}}
 
-#### `trackProductListView`
+#### `ProductListViewEvent`
 
 To track a product list view you can use the `trackProductListView` method with the following attributes:
 
-```ts
-import { trackProductListView } from '@snowplow/browser-plugin-snowplow-ecommerce';
-
-trackProductListView({ products: Product[], name });
+```swift
+ProductListViewEvent(products: [ProductEntity], name: String?)
 ```
 
 - Where `products` is an array of products being viewed from the list.
@@ -37,57 +35,22 @@ trackProductListView({ products: Product[], name });
 
 **Example usage:**
 
-```ts
-import { trackProductListView } from "@snowplow/browser-plugin-snowplow-ecommerce";
+```swift
+let product = ProductEntity(id: "productId", category: "software", currency: "USD", price: 99.99)
+let event = ProductListViewEvent(products: [product], name: "snowplowProducts")
 
-trackProductListView({
-  products: [
-    {
-      id: "P123",
-      name: "Fashion red",
-      brand: "Snowplow",
-      category: "Mens/Apparel",
-      price: 100,
-      inventory_status: "in stock",
-      currency: "USD",
-      position: 1,
-    },
-    {
-      id: "P124",
-      name: "Fashion green",
-      brand: "Snowplow",
-      category: "Mens/Apparel",
-      price: 119,
-      inventory_status: "in stock",
-      currency: "USD",
-      position: 2,
-    },
-    {
-      id: "P125",
-      name: "Baseball T",
-      brand: "Snowplow",
-      category: "Mens/Apparel",
-      price: 200,
-      inventory_status: "in stock",
-      currency: "USD",
-      position: 3,
-    },
-  ],
-  name: "Recommended Products",
-});
+tracker.track(event)
 ```
 
 {{% /tab %}}
-{{% tab name="JavaScript API" %}}
+{{% tab name="Kotlin API" %}}
 
-#### `trackProductListView`
+#### `ProductListViewEvent`
 
-To track a product/s addition to the cart you can use the `trackProductListView` method with the following attributes:
+To track a product list view you can use the `trackProductListView` method with the following attributes:
 
-```ts
-/* {trackerName} is a placeholder for the initialized tracker on your page.  */
-
-window.snowplow("trackProductListView:{trackerName}", { products: Product[], name });
+```kotlin
+ProductListViewEvent(products: List<ProductEntity>, name: String?)
 ```
 
 - Where `products` is an array of products being viewed from the list.
@@ -95,42 +58,49 @@ window.snowplow("trackProductListView:{trackerName}", { products: Product[], nam
 
 **Example usage:**
 
-```ts
-window.snowplow("trackProductListView:{trackerName}", {
-  products: [
-    {
-      id: "P123",
-      name: "Fashion red",
-      brand: "Snowplow",
-      category: "Mens/Apparel",
-      price: 100,
-      inventory_status: "in stock",
-      currency: "USD",
-      position: 1,
-    },
-    {
-      id: "P124",
-      name: "Fashion green",
-      brand: "Snowplow",
-      category: "Mens/Apparel",
-      price: 119,
-      inventory_status: "in stock",
-      currency: "USD",
-      position: 2,
-    },
-    {
-      id: "P125",
-      name: "Baseball T",
-      brand: "Snowplow",
-      category: "Mens/Apparel",
-      price: 200,
-      inventory_status: "in stock",
-      currency: "USD",
-      position: 3,
-    },
-  ],
-  name: "Recommended Products",
-});
+```kotlin
+val product = ProductEntity(
+  id = "productId", 
+  category = "software", 
+  currency = "USD", 
+  price = 99.99
+)
+val event = ProductListViewEvent(listOf(product), name = "snowplowProducts")
+
+tracker.track(event)
+```
+
+{{% /tab %}}
+{{% tab name="Java API" %}}
+
+#### `ProductListViewEvent`
+
+To track a product list view you can use the `trackProductListView` method with the following attributes:
+
+```java
+ProductListViewEvent(products: List<ProductEntity>, name: String?)
+```
+
+- Where `products` is an array of products being viewed from the list.
+- Where `name` is the name of the list being viewed. For the list names, you can use any kind of friendly name or a codified language to express the labeling of the list. E.g. 'Shoes - Men - Sneakers','Search results: "unisex shoes"', 'Product page upsells'
+
+**Example usage:**
+
+```java
+ProductEntity product = new ProductEntity(
+  "productId", // id
+  "software", // category
+  "USD", // currency
+  99.99 // price
+);
+List<Product> products = new ArrayList<>();
+products.add(product);
+ProductListViewEvent event = new ProductListViewEvent(
+  products, // products
+  "snowplowProducts" // name
+);
+
+tracker.track(event);
 ```
 
 {{% /tab %}}
@@ -141,17 +111,15 @@ window.snowplow("trackProductListView:{trackerName}", {
 
 In this section, we will showcase how to track a click/selection of a product in a product list.
 
-{{< tabs groupId="select_js" >}}
-{{% tab name="Browser API" %}}
+{{< tabs groupId="select_mobile" >}}
+{{% tab name="Swift API" %}}
 
-#### `trackProductListClick`
+#### `ProductListClickEvent`
 
-To track a click/selection of a product in a product list you can use the `trackProductListClick` method with the following attributes:
+To track a click/selection of a product in a product list you can use the `ProductListClickEvent` with the following attributes:
 
-```ts
-import { trackProductListClick } from "@snowplow/browser-plugin-snowplow-ecommerce";
-
-trackProductListClick({ product: Product, name });
+```swift
+ProductListViewEvent(product: ProductEntity, name: String?)
 ```
 
 - Where `product` is the product being clicked/selected from the list.
@@ -159,35 +127,22 @@ trackProductListClick({ product: Product, name });
 
 **Example usage:**
 
-```ts
-import { trackProductListClick } from "@snowplow/browser-plugin-snowplow-ecommerce";
+```swift
+let product = ProductEntity(id: "productId", category: "software", currency: "USD", price: 99.99)
+let event = ProductListClickEvent(product: product, name: "snowplowProducts")
 
-trackProductListClick({
-  product: {
-    id: "P124",
-    name: "Fashion green",
-    brand: "Snowplow",
-    category: "Mens/Apparel",
-    price: 119,
-    inventory_status: "in stock",
-    currency: "USD",
-    position: 2,
-  },
-  name: "Recommended Products",
-});
+tracker.track(event)
 ```
 
 {{% /tab %}}
-{{% tab name="JavaScript API" %}}
+{{% tab name="Kotlin API" %}}
 
-#### `trackProductListClick`
+#### `ProductListClickEvent`
 
-To track a click/selection of a product in a product list you can use the `trackProductListClick` method with the following attributes:
+To track a click/selection of a product in a product list you can use the `ProductListClickEvent` with the following attributes:
 
-```ts
-/* {trackerName} is a placeholder for the initialized tracker on your page.  */
-
-window.snowplow("trackProductListClick:{trackerName}", { product: Product[], name });
+```kotlin
+ProductListViewEvent(product: ProductEntity, name: String?)
 ```
 
 - Where `product` is the product being clicked/selected from the list.
@@ -195,27 +150,53 @@ window.snowplow("trackProductListClick:{trackerName}", { product: Product[], nam
 
 **Example usage:**
 
-```ts
-window.snowplow("trackProductListClick:{trackerName}", {
-  product: {
-    id: "P124",
-    name: "Fashion green",
-    brand: "Snowplow",
-    category: "Mens/Apparel",
-    price: 119,
-    inventory_status: "in stock",
-    currency: "USD",
-    position: 2,
-  },
-  name: "Recommended Products",
-});
+```kotlin
+val product = ProductEntity(
+  id = "productId", 
+  category = "software", 
+  currency = "USD", 
+  price = 99.99
+)
+val event = ProductListClickEvent(product, name = "snowplowProducts")
+
+tracker.track(event)
 ```
 
 {{% /tab %}}
+{{% tab name="Java API" %}}
 
+#### `ProductListClickEvent`
+
+To track a click/selection of a product in a product list you can use the `ProductListClickEvent` with the following attributes:
+
+```java
+ProductListViewEvent(product: ProductEntity, name: String?)
+```
+
+- Where `product` is the product being clicked/selected from the list.
+- Where `name` is the name of the list the product is currently in. For the list names, you can use any kind of friendly name or a codified language to express the labeling of the list. E.g. 'Shoes - Men - Sneakers','Search results: "unisex shoes"', 'Product page upsells'
+
+**Example usage:**
+
+```java
+ProductEntity product = new ProductEntity(
+  "productId", // id
+  "software", // category
+  "USD", // currency
+  99.99 // price
+);
+ProductListClickEvent event = new ProductListClickEvent(
+  product, // product
+  "snowplowProducts" // name
+);
+
+tracker.track(event);
+```
+
+{{% /tab %}}
 {{< /tabs >}}
 
-Where `product` can have the following attributes:
+Where `ProductEntity` can have the following attributes:
 
 |    attribute     |   type   |                                                    description                                                     | required |
 | :--------------: | :------: | :----------------------------------------------------------------------------------------------------------------: | :------: |
