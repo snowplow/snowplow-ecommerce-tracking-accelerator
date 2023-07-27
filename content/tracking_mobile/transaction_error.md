@@ -14,196 +14,160 @@ Additionally by tracking the error types, soft or hard, and the resolution selec
 
 #### Tracking transaction errors
 
-In this section, we will showcase how to track a transaction error event for a transaction. In many cases, transaction processing is completed through a backend system and not the website frontend, that is why we also showcase a server-side language examples. You can use any of our trackers to achieve the same result.
+In this section, we will showcase how to track a transaction error event for a transaction. In many cases, transaction processing is completed through a backend system. You can use any of our trackers to achieve the same result, using custom `SelfDescribingEvent` and the same `transaction_error` schema.
 
-{{< tabs groupId="select_js" >}}
-{{% tab name="Browser API" %}}
+{{< tabs groupId="select_mobile" >}}
+{{% tab name="Swift API" %}}
 
-#### `trackTransactionError`
+#### `TransactionErrorEvent`
 
-To track a transaction error you can use the `trackTransactionError` method with the following attributes:
+To track a transaction error you can use the `TransactionErrorEvent` with the following attributes:
 
-```ts
-import { trackTransactionError } from "@snowplow/browser-plugin-snowplow-ecommerce";
-
-trackTransactionError({
-  resolution,
-  error_code,
-  error_shortcode,
-  error_description,
-  error_type,
-  transaction
-});
+```swift
+TransactionErrorEvent(
+  transaction: TransactionEntity,
+  resolution: String?,
+  erroCode: String?,
+  errorShortcode: String?,
+  errorDescription: String?,
+  errorType: ErrorType?
+)
 ```
-
-- Where `resolution` is the system action selected in this failure event E.g. Allowing retries, blocking the payment gateway, contacting the user or other.
-- Where `error_code` is the error-identifying code for the transaction issue E.g. E522.
-- Where `error_shortcode` is the shortcode for the transaction error E.g declined_by_api, pm_card_radarBlock.
-- Where `error_description` is the longer description for the transaction error.
-- Where `error_type` is the type of error the specific issue is regarded as in the standard classification of _hard_ and _soft_. Hard error types mean the customer must provide another form of payment e.g. an expired card. Soft errors can be the result of temporary issues where retrying might be successful e.g. processor declined the transaction.
 - Where `transaction` is the transaction the issue occurred in.
+- Where `resolution` is the system action selected in this failure event E.g. Allowing retries, blocking the payment gateway, contacting the user or other.
+- Where `errorCode` is the error-identifying code for the transaction issue E.g. E522.
+- Where `errorShortcode` is the shortcode for the transaction error E.g declined_by_api, pm_card_radarBlock.
+- Where `errorDescription` is the longer description for the transaction error.
+- Where `errorType` is the type of error the specific issue is regarded as in the standard classification of _hard_ and _soft_. Hard error types mean the customer must provide another form of payment e.g. an expired card. Soft errors can be the result of temporary issues where retrying might be successful e.g. processor declined the transaction. Provided as an `ErrorType` enum.
 
 **Example usage:**
 
-```ts
-import { trackTransactionError } from "@snowplow/browser-plugin-snowplow-ecommerce";
-
-trackTransactionError({
+```swift
+let transaction = TransactionEntity(
+  transactionId: "id-123", 
+  revenue: 50000, 
+  currency: "JPY", 
+  paymentMethod: "debit", 
+  totalQuantity: 2
+)
+let event = TransactionErrorEvent(
+  transaction: transaction, 
+  errorCode: "E123", 
+  errorShortcode: "CARD_DECLINE",
+  errorDescription: "Card has been declined by the issuing bank.",
   resolution: "rejection",
-  error_code: "E123",
-  error_shortcode: "CARD_DECLINE",
-  error_description: "Card has been declined by the issuing bank.",
-  error_type: "hard",
-  transaction: {
-    revenue: 45,
-    currency: "EUR",
-    transaction_id: "T12345",
-    payment_method: "card" 
-  }
-});
+  errorType: .hard
+)
+
+tracker.track(event)
 ```
 
 {{% /tab %}}
-{{% tab name="JavaScript API" %}}
+{{% tab name="Kotlin API" %}}
 
-#### `trackTransactionError`
+#### `TransactionErrorEvent`
 
-To track a transaction error you can use the `trackTransactionError` method with the following attributes:
+To track a transaction error you can use the `TransactionErrorEvent` with the following attributes:
 
-```ts
-/* {trackerName} is a placeholder for the initialized tracker on your page.  */
-
-window.snowplow("trackTransactionError:{trackerName}", {
-  resolution,
-  error_code,
-  error_shortcode,
-  error_description,
-  error_type,
-  transaction
-});
+```kotlin
+TransactionErrorEvent(
+  transaction: TransactionEntity,
+  resolution: String?,
+  erroCode: String?,
+  errorShortcode: String?,
+  errorDescription: String?,
+  errorType: ErrorType?
+)
 ```
-
-- Where `resolution` is the system action selected in this failure event E.g. Allowing retries, blocking the payment gateway, contacting the user or other.
-- Where `error_code` is the error-identifying code for the transaction issue E.g. E522.
-- Where `error_shortcode` is the shortcode for the transaction error E.g declined_by_api, pm_card_radarBlock.
-- Where `error_description` is the longer description for the transaction error.
-- Where `error_type` is the type of error the specific issue is regarded as in the standard classification of _hard_ and _soft_. Hard error types mean the customer must provide another form of payment e.g. an expired card. Soft errors can be the result of temporary issues where retrying might be successful e.g. processor declined the transaction.
 - Where `transaction` is the transaction the issue occurred in.
+- Where `resolution` is the system action selected in this failure event E.g. Allowing retries, blocking the payment gateway, contacting the user or other.
+- Where `errorCode` is the error-identifying code for the transaction issue E.g. E522.
+- Where `errorShortcode` is the shortcode for the transaction error E.g declined_by_api, pm_card_radarBlock.
+- Where `errorDescription` is the longer description for the transaction error.
+- Where `errorType` is the type of error the specific issue is regarded as in the standard classification of _hard_ and _soft_. Hard error types mean the customer must provide another form of payment e.g. an expired card. Soft errors can be the result of temporary issues where retrying might be successful e.g. processor declined the transaction. Provided as an `ErrorType` enum.
 
 **Example usage:**
 
-```ts
-window.snowplow("trackTransactionError:{trackerName}", {
-  resolution: "rejection",
-  error_code: "E123",
-  error_shortcode: "CARD_DECLINE",
-  error_description: "Card has been declined by the issuing bank.",
-  error_type: "hard",
-  transaction: {
-    revenue: 45,
-    currency: "EUR",
-    transaction_id: "T12345",
-    payment_method: "card" 
-  }
-});
+```kotlin
+val transaction = TransactionEntity(
+  id = "id-123", 
+  revenue = 50000,
+  currency = "JPY",
+  paymentMethod = "debit",
+  totalQuantity = 2
+)
+val event = TransactionErrorEvent(
+  transaction = transaction, 
+  errorCode = "E123", 
+  errorShortcode = "CARD_DECLINE",
+  errorDescription = "Card has been declined by the issuing bank.",
+  resolution = "rejection",
+  errorType = ErrorType.Hard
+)
+
+tracker.track(event)
 ```
 
 {{% /tab %}}
+{{% tab name="Java API" %}}
 
-{{% tab name="Node.js" %}}
-#### Track transaction errors using a self describing event
+#### `TransactionErrorEvent`
 
-To track transaction errors in the Node.js tracker, you can use the `buildSelfDescribingEvent` method together with the correct parameters for the transaction error event.
+To track a transaction error you can use the `TransactionErrorEvent` with the following attributes:
 
-```ts
-/* Where `t` is a placeholder for the initialized tracker instance on your application.  */
-
-t.track(buildSelfDescribingEvent({
-  event: {
-    schema: "iglu:com.snowplowanalytics.snowplow.ecommerce/snowplow_ecommerce_action/jsonschema/1-0-2",
-    data: {
-      type: "trns_error"
-    }
-  }
-}, [
-  /* Transaction Error context */
-  {
-    schema: "iglu:com.snowplowanalytics.snowplow.ecommerce/transaction_error/jsonschema/1-0-0",
-    data: { 
-      /* ...Transaction error data */
-    }
-  },
-  /* Transaction context */
-  {
-    schema: "iglu:com.snowplowanalytics.snowplow.ecommerce/transaction/jsonschema/1-0-0",
-    data: {
-      /* ...Transaction data */
-    }
-  }
-]));
+```java
+TransactionErrorEvent(
+  transaction: TransactionEntity,
+  resolution: String?,
+  erroCode: String?,
+  errorShortcode: String?,
+  errorDescription: String?,
+  errorType: ErrorType?
+)
 ```
-Where transaction error data can include:
-- `resolution` as the system action selected in this failure event E.g. Allowing retries, blocking the payment gateway, contacting the user or other.
-- `error_code` as the error-identifying code for the transaction issue E.g. E522.
-- `error_shortcode` as the shortcode for the transaction error E.g declined_by_api, pm_card_radarBlock.
-- `error_description` as the longer description for the transaction error.
-- `error_type` as the type of error the specific issue is regarded as in the standard classification of _hard_ and _soft_. Hard error types mean the customer must provide another form of payment e.g. an expired card. Soft errors can be the result of temporary issues where retrying might be successful e.g. processor declined the transaction.
-For the transaction taking part in the process, an additional transaction data context is added on the contexts to be sent with the event.
-
+- Where `transaction` is the transaction the issue occurred in.
+- Where `resolution` is the system action selected in this failure event E.g. Allowing retries, blocking the payment gateway, contacting the user or other.
+- Where `errorCode` is the error-identifying code for the transaction issue E.g. E522.
+- Where `errorShortcode` is the shortcode for the transaction error E.g declined_by_api, pm_card_radarBlock.
+- Where `errorDescription` is the longer description for the transaction error.
+- Where `errorType` is the type of error the specific issue is regarded as in the standard classification of _hard_ and _soft_. Hard error types mean the customer must provide another form of payment e.g. an expired card. Soft errors can be the result of temporary issues where retrying might be successful e.g. processor declined the transaction. Provided as an `ErrorType` enum.
 
 **Example usage:**
 
-```ts
-/* Where `t` is a placeholder for the initialized tracker instance on your application.  */
+```java
+TransactionEntity transaction = new TransactionEntity(
+  "id-123", // id
+  50000, // revenue
+  "JPY", // currency
+  "debit", // paymentMethod
+  2 // totalQuantity
+);
+TransactionErrorEvent event = TransactionErrorEvent(
+  transaction, // transaction
+  "E123", // errorCode
+  "CARD_DECLINE", // errorShortcode
+  "Card has been declined by the issuing bank.", // errorDescription
+  ErrorType.Hard // errorType
+  "rejection" // resolution
+)
 
-t.track(buildSelfDescribingEvent({
-  event: {
-    schema: "iglu:com.snowplowanalytics.snowplow.ecommerce/snowplow_ecommerce_action/jsonschema/1-0-2",
-    data: {
-      type: "trns_error"
-    }
-  }
-}, [
-  /* Transaction Error context */
-  {
-    schema: "iglu:com.snowplowanalytics.snowplow.ecommerce/transaction_error/jsonschema/1-0-0",
-    data: { 
-      resolution: "rejection",
-      error_code: "E123",
-      error_shortcode: "CARD_DECLINE",
-      error_description: "Card has been declined by the issuing bank.",
-      error_type: "hard",
-    }
-  },
-  /* Transaction context */
-  {
-    schema: "iglu:com.snowplowanalytics.snowplow.ecommerce/transaction/jsonschema/1-0-0",
-    data: {
-      revenue: 45,
-      currency: "EUR",
-      transaction_id: "T12345",
-      payment_method: "card" 
-    }
-  }
-]));
+tracker.track(event)
 ```
-
-To learn more about tracking self describing events in Node.js take a look at the `buildSelfDescribingEvent` [documentation](https://docs.snowplow.io/docs/collecting-data/collecting-from-own-applications/javascript-trackers/node-js-tracker/node-js-tracker-v3/tracking-events/#track-self-describing-events-withbuildselfdescribingevent).
 
 {{% /tab %}}
 
 {{< /tabs >}}
 
-Where `transaction` can have the following attributes:
+Where `TransactionEntity` can have the following attributes:
 | attribute | type | description | required |
 | :--------------: | :------: | :----------------------------------------------------------------------------------------------------------------: | :------: |
-| transaction_id | `string` | The ID of the transaction | ✅ |
+| transactionId | `string` | The ID of the transaction | ✅ |
 | currency | `string` | The currency used for the transaction (ISO 4217). | ✅ |
 | revenue | `number` | The revenue of the transaction. | ✅ |
-| payment_method | `string` | The payment method used for the transaction. | ✅ |
-| total_quantity | `number` | Total quantity of items in the transaction. | ✅ |
+| paymentMethod | `string` | The payment method used for the transaction. | ✅ |
+| totalQuantity | `number` | Total quantity of items in the transaction. | ✅ |
 | tax | `number` | Total amount of tax on the transaction. | ✘ |
 | shipping | `number` | Total cost of shipping on the transaction. | ✘ |
-| discount_code | `string` | Discount code used. | ✘ |
-| discount_amount | `number` | Discount amount taken off. | ✘ |
-| credit_order | `boolean` | Whether the transaction is a credit order or not. | ✘ |
+| discountCode | `string` | Discount code used. | ✘ |
+| discountAmount | `number` | Discount amount taken off. | ✘ |
+| creditOrder | `boolean` | Whether the transaction is a credit order or not. | ✘ |

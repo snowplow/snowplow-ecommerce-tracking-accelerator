@@ -12,151 +12,145 @@ Transaction events are used to track the successful completion of a purchase/tra
 
 In this section, we will showcase how to track a completed transaction.
 
-{{< tabs groupId="select_js" >}}
-{{% tab name="Browser API" %}}
+{{< tabs groupId="select_mobile" >}}
+{{% tab name="Swift API" %}}
 
-#### `trackTransaction`
+#### `TransactionEvent`
 
-To track a completed transaction you can use the `trackTransaction` method with the following attributes:
+To track a completed transaction you can use the `TransactionEvent` with the following attributes:
 
-```ts
-import { trackTransaction } from "@snowplow/browser-plugin-snowplow-ecommerce";
-
-trackTransaction({
-  transaction_id,
-  revenue,
-  currency,
-  payment_method,
-  total_quantity,
-  tax,
-  shipping,
-  discount_code,
-  discount_amount,
-  credit_order,
-  products,
-});
+```swift
+AddToCartEvent(transaction: TransactionEntity, products: [ProductEntity]?)
 ```
 
-- Where `transaction_id` is the ID of the transaction.
-- Where `revenue` is the total value of the transaction.
-- Where `currency` is the currency used for the transaction.
-- Where `payment_method` is the payment method used for the transaction.
-- Where `total_quantity` is the total quantity of items in the transaction.
-- Where `tax` is the total amount of tax on the transaction.
-- Where `shipping` is the total cost of shipping on the transaction.
-- Where `discount_code` is the discount code used.
-- Where `discount_amount` is the discount amount taken off.
-- Where `credit_order` is whether the transaction is a credit order or not.
-- Where `products` is an array of products included on the transaction.
+- Where `transaction` is a transaction object.
+- Where `products` is an array with the product/s in the transaction.
 
 **Example usage:**
 
-```ts
-import { trackTransaction } from "@snowplow/browser-plugin-snowplow-ecommerce";
-
-trackTransaction({
-  transaction_id: "T12345",
-  revenue: 230,
-  currency: "USD",
-  payment_method: "credit_card",
-  total_quantity: 1,
+```swift
+let transaction = TransactionEntity(
+  transactionId: "id-123", 
+  revenue: 230, 
+  currency: "GBP", 
+  paymentMethod: "debit", 
+  totalQuantity: 2,
   tax: 20,
-  shipping: 10,
-  products: [
-    {
-      id: "P125",
-      name: "Baseball T",
-      brand: "Snowplow",
-      category: "Mens/Apparel",
-      price: 200,
-      inventory_status: "in stock",
-      currency: "USD",
-      position: 3,
-    },
-  ],
-});
+  shipping: 10
+)
+let product = ProductEntity(
+  id: "productId", 
+  category: "clothes/shirts", 
+  currency: "GBP", 
+  price: 100
+)
+
+tracker.track(TransactionEvent(transaction: transaction, products: [product]))
 ```
 
 {{% /tab %}}
-{{% tab name="JavaScript API" %}}
+{{% tab name="Kotlin API" %}}
 
-#### `trackTransaction`
+#### `TransactionEvent`
 
-To track a completed transaction you can use the `trackTransaction` method with the following attributes:
+To track a completed transaction you can use the `TransactionEvent` with the following attributes:
 
-```ts
-/* {trackerName} is a placeholder for the initialized tracker on your page.  */
-
-window.snowplow("trackTransaction:{trackerName}", {
-  transaction_id,
-  revenue,
-  currency,
-  payment_method,
-  total_quantity,
-  tax,
-  shipping,
-  discount_code,
-  discount_amount,
-  credit_order,
-  products,
-});
+```kotlin
+AddToCartEvent(transaction: TransactionEntity, products: List<ProductEntity>?)
 ```
 
-- Where `transaction_id` is the ID of the transaction.
-- Where `revenue` is the total value of the transaction.
-- Where `currency` is the currency used for the transaction.
-- Where `payment_method` is the payment method used for the transaction.
-- Where `total_quantity` is the total quantity of items in the transaction.
-- Where `tax` is the total amount of tax on the transaction.
-- Where `shipping` is the total cost of shipping on the transaction.
-- Where `discount_code` is the discount code used.
-- Where `discount_amount` is the discount amount taken off.
-- Where `credit_order` is whether the transaction is a credit order or not.
-- Where `products` is an array of products included on the transaction.
+- Where `transaction` is a transaction object.
+- Where `products` is an array with the product/s in the transaction.
 
 **Example usage:**
 
-```ts
-window.snowplow("trackTransaction:{trackerName}", {
-  transaction_id: "T12345",
-  revenue: 230,
-  currency: "USD",
-  payment_method: "credit_card",
-  total_quantity: 1,
-  tax: 20,
-  shipping: 10,
-  products: [
-    {
-      id: "P125",
-      name: "Baseball T",
-      brand: "Snowplow",
-      category: "Mens/Apparel",
-      price: 200,
-      inventory_status: "in stock",
-      currency: "USD",
-      position: 3,
-    },
-  ],
-});
+```kotlin
+val transaction = TransactionEntity(
+  transactionId = "id-123", 
+  revenue = 230, 
+  currency = "GBP", 
+  paymentMethod = "debit", 
+  totalQuantity = 2,
+  tax = 20,
+  shipping = 10
+)
+val product = ProductEntity(
+  id = "productId", 
+  category = "clothes/shirts", 
+  currency = "GBP", 
+  price = 100
+)
+
+tracker.track(TransactionEvent(transaction: transaction, products: listOf(product)))
+```
+
+{{% /tab %}}
+{{% tab name="Java API" %}}
+
+#### `TransactionEvent`
+
+To track a completed transaction you can use the `TransactionEvent` with the following attributes:
+
+```java
+AddToCartEvent(transaction: TransactionEntity, products: List<ProductEntity>?)
+```
+
+- Where `transaction` is a transaction object.
+- Where `products` is an array with the product/s in the transaction.
+
+**Example usage:**
+
+```java
+TransactionEntity transaction = TransactionEntity(
+  "id-123", // transactionId
+  230, // revenue
+  "GBP", // currency
+  "debit", // paymentMethod
+  2, // totalQuantity
+  20, // tax
+  10 // shipping
+);
+ProductEntity product = new ProductEntity(
+  "productId", // id
+  "clothes/shirts", // category
+  "GBP", // currency
+  100 // price
+);
+
+tracker.track(TransactionEvent(transaction, Arrays.asList(product)))
 ```
 
 {{% /tab %}}
 
 {{< /tabs >}}
 
-Where `product` can have the following attributes:
-| attribute | type | description | required |
-| :--------------: | :------: | :----------------------------------------------------------------------------------------------------------------: | :------: |
-| id | `string` | SKU or product ID. | ✅ |
-| currency | `string` | Currency in which the product is being priced (ISO 4217). | ✅ |
-| price | `number` | Price of the product at the current time. | ✅ |
-| name | `string` | Name or title of the product. | ✘ |
-| category | `string` | Category the product belongs to. Use a consistent separator to express multiple levels. E.g. Woman/Shoes/Sneakers. The number of levels is defined by the user. | ✘ |
-| list_price | `number` | Recommended or list price of a product. | ✘ |
-| quantity | `number` | Quantity of the product taking part in the action. Used for Cart events. | ✘ |
-| size | `string` | Size of the product. E.g. XL, XS, M. | ✘ |
-| variant | `string` | Variant of the product. E.g. Red, Heavy, Leather. | ✘ |
-| brand | `string` | Brand of the product. | ✘ |
-| inventory_status | `string` | Inventory status of the product. E.g. in stock, out of stock, preorder, backorder. | ✘ |
-| position | `number` | Position the product was presented in a list of products. Used in Product List events. | ✘ |
-| creative_id | `string` | Identifier/Name/Url for the creative presented on a list or product view. | ✘ |
+Where `ProductEntity` can have the following attributes:
+|    attribute    |   type   |                                                                           description                                                                           | required |
+|:---------------:|:--------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------:|
+|       id        | `string` |                                                                       SKU or product ID.                                                                        |    ✅     |
+|    currency     | `string` |                                                    Currency in which the product is being priced (ISO 4217).                                                    |    ✅     |
+|      price      | `number` |                                                            Price of the product at the current time.                                                            |    ✅     |
+|      name       | `string` |                                                                  Name or title of the product.                                                                  |    ✘     |
+|    category     | `string` | Category the product belongs to. Use a consistent separator to express multiple levels. E.g. Woman/Shoes/Sneakers. The number of levels is defined by the user. |    ✘     |
+|    listPrice    | `number` |                                                             Recommended or list price of a product.                                                             |    ✘     |
+|    quantity     | `number` |                                            Quantity of the product taking part in the action. Used for Cart events.                                             |    ✘     |
+|      size       | `string` |                                                              Size of the product. E.g. XL, XS, M.                                                               |    ✘     |
+|     variant     | `string` |                                                        Variant of the product. E.g. Red, Heavy, Leather.                                                        |    ✘     |
+|      brand      | `string` |                                                                      Brand of the product.                                                                      |    ✘     |
+| inventoryStatus | `string` |                                       Inventory status of the product. E.g. in stock, out of stock, preorder, backorder.                                        |    ✘     |
+|    position     | `number` |                                     Position the product was presented in a list of products. Used in Product List events.                                      |    ✘     |
+|   creativeId    | `string` |                                            Identifier/Name/Url for the creative presented on a list or product view.                                            |    ✘     |
+
+Where `TransactionEntity` can have the following attributes:
+|   attribute    |   type    |                    description                    | required |
+|:--------------:|:---------:|:-------------------------------------------------:|:--------:|
+| transactionId  | `string`  |             The ID of the transaction             |    ✅     |
+|    currency    | `string`  | The currency used for the transaction (ISO 4217). |    ✅     |
+|    revenue     | `number`  |          The revenue of the transaction.          |    ✅     |
+| paymentMethod  | `string`  |   The payment method used for the transaction.    |    ✅     |
+| totalQuantity  | `number`  |    Total quantity of items in the transaction.    |    ✅     |
+|      tax       | `number`  |      Total amount of tax on the transaction.      |    ✘     |
+|    shipping    | `number`  |    Total cost of shipping on the transaction.     |    ✘     |
+|  discountCode  | `string`  |                Discount code used.                |    ✘     |
+| discountAmount | `number`  |            Discount amount taken off.             |    ✘     |
+|  creditOrder   | `boolean` | Whether the transaction is a credit order or not. |    ✘     |
