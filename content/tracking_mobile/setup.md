@@ -3,125 +3,158 @@ title = "Set-up your tracking"
 weight = 1
 +++
 
-Depending on your store's front-end infrastructure and Snowplow set-up, you can use either our JavaScript tracker for a `<script>` tag option or our Browser tracker for a more modern web development set-up.
+Setting up Snowplow e-commerce tracking starts with installing and setting up the tracker as for any Snowplow implementation. Read more [here](https://docs.snowplow.io/docs/collecting-data/collecting-from-own-applications/mobile-trackers/installation-and-set-up/).
 
-In both options, the API is similar with only minor differences in the set-up and method calls.
+{{< tabs groupId="select_mobile" >}}
+{{% tab name="Swift for iOS" %}}
 
-{{< tabs groupId="package manager" >}}
-{{% tab name="Package Manager" %}}
+#### **Step 1:** Install tracker dependency
 
-#### **Step 1:** Install browser-tracker package
+To install Snowplow Tracker with SPM:
 
-Install the `@snowplow/browser-tracker` and `@snowplow/browser-plugin-snowplow-ecommerce` via npm, yarn or any other package manager of your choice. Example using `npm`:
+1. In Xcode, select File > Swift Packages > Add Package Dependency.
+2. Add the url where to download the library: https://github.com/snowplow/snowplow-ios-tracker
 
-```bash
-npm install @snowplow/browser-tracker @snowplow/browser-plugin-snowplow-ecommerce
+---
+
+#### **Step 2:** Create the tracker
+
+In your app, create the tracker. 
+
+1. In your application delegate `AppDelegate.swift` add `import SnowplowTracker`.
+
+2. In the `application(_:didFinishLaunchingWithOptions:)` method, set up the SDK as follows:
+   
+   ```swift
+   let tracker = Snowplow.createTracker(
+    namespace: "appTracker",
+    endpoint: "https://snowplow-collector-url.com"
+  )
+   ```
+
+   The URL path for your collector endpoint should include the protocol, "http" or "https". If not included in the URL, "https" connection will be used by default. The tracker namespace will be attached to all events, and is especially useful when multiple trackers are instrumented in the same app (with different configuration or endpoint).
+
+3. It creates a tracker instance which can be used to track events like this:
+   
+  ```swift
+  let event = PromotionViewEvent(promotion: PromotionEntity(id: "IP1234"))
+
+  tracker?.track(event)
+   ```
+   
+   If you prefer to access the tracker when the reference is not directly accessible, you can use the `defaultTracker` :
+   
+   ```swift
+   Snowplow.defaultTracker()?.track(event)
+   ```
+
+{{% /tab %}}
+{{% tab name="Kotlin for Android" %}}
+
+#### **Step 1:** Install tracker dependency
+
+The Android Tracker SDK can be installed using Gradle.
+
+**Gradle**
+
+Add into your `build.gradle` file:
+
+```gradle
+dependencies {
+  ...
+  // Snowplow Android Tracker
+  implementation 'com.snowplowanalytics:snowplow-android-tracker:5.+'
+  // In case 'lifecycleAutotracking' is enabled
+  implementation 'androidx.lifecycle-extensions:2.2.+'
+  ...
+}
 ```
 
 ---
 
 #### **Step 2:** Create the tracker
 
-In your `src` folder, create a file called `tracker.js`. Inside it create the `tracker` object using the snippet below to use it anywhere in the application:
+In your app, create the tracker. 
 
-- Tracker Name: `'sp'`
-- Collector Url: `'{{Url for Collector}}'`
+1. In your `Application` subclass, set up the SDK as follows:
+   
+   ```kotlin
+    val tracker = Snowplow.createTracker(
+      applicationContext, // Android context (LocalContext.current in Compose apps)
+      "appTracker", // namespace
+      "https://snowplow-collector-url.com" // Event collector URL
+    )
+   ```
 
-```javascript
-import { newTracker } from "@snowplow/browser-tracker";
+   The URL path for your collector endpoint should include the protocol, "http" or "https". If not included in the URL, "https" connection will be used by default. The tracker namespace will be attached to all events, and is especially useful when multiple trackers are instrumented in the same app (with different configuration or endpoint).
 
-export const tracker = newTracker("sp", "{{Url for Collector}}", {
-  /* tracker options */
-});
-```
+2. It creates a tracker instance which can be used to track events like this:
+   
+  ```kotlin
+  val event = PromotionViewEvent(PromotionEntity(id = "IP1234"))
 
-In addition to the basic tracker, you can add any number of options for using Snowplow's more advanced features. <a target="_blank" href="https://docs.snowplow.io/docs/collecting-data/collecting-from-own-applications/javascript-trackers/browser-tracker/browser-tracker-v3-reference/tracker-setup/initialization-options/">See more on our documentation</a>.
-
----
-
-#### **Step 3:** Configure the tracker to use the `SnowplowEcommercePlugin`
-
-To allow the tracker to use e-commerce methods from the `SnowplowEcommercePlugin`, you need to include during the initialization of the tracker. By adding it on the `plugins` array, you gain access to the full functionality:
-
-```javascript
-import { newTracker } from "@snowplow/browser-tracker";
-import { SnowplowEcommercePlugin } from "@snowplow/browser-plugin-snowplow-ecommerce";
-
-export const tracker = newTracker("sp", "{{Url for Collector}}", {
-  /* tracker options */
-  plugins: [SnowplowEcommercePlugin()],
-});
-```
-
-Now the tracker has everything required to start collecting e-commerce action data. On the next step we are going to see how to use the available APIs.
+  tracker.track(event)
+   ```
+   
+   If you prefer to access the tracker when the reference is not directly accessible, you can use the `defaultTracker` :
+   
+   ```kotlin
+   Snowplow.defaultTracker?.track(event)
+   ```
 
 {{% /tab %}}
-{{% tab name="Script Tag" %}}
+{{% tab name="Java for Android" %}}
 
-#### **Step 1:** Download sp.js
+#### **Step 1:** Install tracker dependency
 
-Add the `sp.js` file in your project and add it to a link-accessible server directory e.g. `public/`. The latest version can be found **[here](https://github.com/snowplow/snowplow-javascript-tracker/releases).**
+The Android Tracker SDK can be installed using Gradle.
 
----
+**Gradle**
 
-#### **Step 2:** Add the Snowplow JavaScript snippet
+Add into your `build.gradle` file:
 
-Add the below snippet to all of the pages you would like to use Snowplow tracking. **Make sure to update the {{Link to the sp.js file}} variable.**
-
-Place the `<script>` tag into the `<head>` element of your pages:
-
-```html
-<script type="text/javascript">
-  (function (p, l, o, w, i, n, g) {
-    if (!p[i]) {
-      p.GlobalSnowplowNamespace = p.GlobalSnowplowNamespace || [];
-      p.GlobalSnowplowNamespace.push(i);
-      p[i] = function () {
-        (p[i].q = p[i].q || []).push(arguments);
-      };
-      p[i].q = p[i].q || [];
-      n = l.createElement(o);
-      g = l.getElementsByTagName(o)[0];
-      n.async = 1;
-      n.src = w;
-      g.parentNode.insertBefore(n, g);
-    }
-  })(window, document, "script", "{{Link to sp.js file}}", "snowplow");
-</script>
+```gradle
+dependencies {
+  ...
+  // Snowplow Android Tracker
+  implementation 'com.snowplowanalytics:snowplow-android-tracker:5.+'
+  // In case 'lifecycleAutotracking' is enabled
+  implementation 'androidx.lifecycle-extensions:2.2.+'
+  ...
+}
 ```
 
 ---
 
-#### **Step 3:** Configure the global `tracker` instance
+#### **Step 2:** Create the tracker
 
-You can now create the `newTracker`, with the following arguments. This creates an instance of a basic tracker without any additional context.
+In your app, create the tracker. 
 
-- Tracker Name: `'sp'`
-- Collector Url: `'{{Url for Collector}}'`
+1. In your `Application` subclass, set up the SDK as follows:
+   
+   ```java
+    TrackerController tracker = Snowplow.createTracker(
+      getApplicationContext(), // Android context
+      "appTracker", // namespace
+      "https://snowplow-collector-url.com" // Event collector URL
+    );
+   ```
 
-```javascript
-window.snowplow("newTracker", "sp", "{{Url for Collector}}", {
-  /* tracker options */
-});
-```
+   The URL path for your collector endpoint should include the protocol, "http" or "https". If not included in the URL, "https" connection will be used by default. The tracker namespace will be attached to all events, and is especially useful when multiple trackers are instrumented in the same app (with different configuration or endpoint).
 
-In addition to the basic tracker, you can add any number of options for using Snowplow's more advanced features. <a target="_blank" href="https://docs.snowplow.io/docs/collecting-data/collecting-from-own-applications/javascript-trackers/javascript-tracker/javascript-tracker-v3/tracker-setup/initialization-options/">See more on our documentation</a>.
+2. It creates a tracker instance which can be used to track events like this:
+   
+  ```java
+  Event event = new PromotionViewEvent(new PromotionEntity("IP1234"));
 
-#### **Step 4:** Configure the tracker to use the `SnowplowEcommercePlugin`
-
-To add the `SnowplowEcommercePlugin` on the JavaScript tracker and enable the usage of the e-commerce API, you should include it as shown below:
-
-❗❗**NOTE: The script below should be executed **before** any e-commerce API can be called successfully.**
-
-```javascript
-window.snowplow(
-  "addPlugin:sp",
-  "https://cdn.jsdelivr.net/npm/@snowplow/browser-plugin-snowplow-ecommerce@3/dist/index.umd.min.js",
-  ["snowplowEcommerceAccelerator", "SnowplowEcommercePlugin"]
-);
-```
-
-Now the tracker has everything required to start collecting e-commerce action data. On the next step we are going to see how to use the available APIs.
+  tracker.track(event);
+   ```
+   
+   If you prefer to access the tracker when the reference is not directly accessible, you can use the `defaultTracker` :
+   
+   ```java
+   Snowplow.getDefaultTracker().track(event);
+   ```
 
 {{% /tab %}}
 {{< /tabs >}}
