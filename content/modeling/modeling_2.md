@@ -8,7 +8,7 @@ post = ""
 
 #### **Step 1:** Set-up Variables
 
-The snowplow_ecommerce dbt package comes with a list of variables, each with a default value that you may need to overwrite in your own dbt project's `dbt_project.yml` file. For details you can have a look at our [docs](https://docs.snowplow.io/docs/modeling-your-data/modeling-your-data-with-dbt/dbt-configuration/ecommerce/) which contains descriptions and default values of each variable, or you can look in the installed package's project file which can be found at(https://docs.snowplow.io/docs/modeling-your-data/modeling-your-data-with-dbt/).
+The `snowplow_ecommerce` dbt package comes with a list of variables, each with a default value that you may need to overwrite in your own dbt project's `dbt_project.yml` file. For details you can have a look at our [docs](https://docs.snowplow.io/docs/modeling-your-data/modeling-your-data-with-dbt/dbt-configuration/ecommerce/) which contains descriptions and default values of each variable, or you can look in the installed package's project file which can be found at(https://docs.snowplow.io/docs/modeling-your-data/modeling-your-data-with-dbt/).
 
 For the sake of simplicity we have selected the variables that you will most likely need to overwrite, the rest can be changed at a later stage if and when it is needed.
 
@@ -17,6 +17,7 @@ For the sake of simplicity we have selected the variables that you will most lik
 - `snowplow__events`: Variable to overwrite the events table in case it is named differently.
 - `snowplow__number_category_levels`: Variable to overwrite the maximum number of levels you have in your product categories e.g. `books/fiction/magical-fiction` has 3 levels
 - `snowplow__number_checkout_steps`: The index of the checkout step which represents a completed transaction. This is required to enable working checkout funnel analysis.
+- `snowplow__enable_mobile_events`: Whether to look for mobile e-commerce events or not. Note that we overwrite the `domain_sessionid` and `page_view_id` fields with mobile fields in these cases. You can read more about it [here](https://docs.snowplow.io/docs/modeling-your-data/modeling-your-data-with-dbt/dbt-models/dbt-ecommerce-data-model/#mixing-web-and-mobile-events).
 
 To overwrite these, add the following snippet to the `dbt_project.yml`:
 
@@ -28,6 +29,8 @@ vars:
     snowplow__events: 'atomic.events'
     snowplow__number_category_levels: 4
     snowplow__number_checkout_steps: 4
+    # Set to false if you are not tracking any events on mobile
+    snowplow__enable_mobile_events: true
 ```
 #### **Step 2:** Add the selectors.yml to your project
 
