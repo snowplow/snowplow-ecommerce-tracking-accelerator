@@ -24,7 +24,7 @@ In this section, we will showcase how to track product list views.
 
 #### `ProductListViewEvent`
 
-To track a product list view you can use the `trackProductListView` method with the following attributes:
+To track a product list view you can use the `ProductListViewEvent` with the following attributes:
 
 ```swift
 ProductListViewEvent(products: [ProductEntity], name: String?)
@@ -47,7 +47,7 @@ tracker.track(event)
 
 #### `ProductListViewEvent`
 
-To track a product list view you can use the `trackProductListView` method with the following attributes:
+To track a product list view you can use the `ProductListViewEvent` with the following attributes:
 
 ```kotlin
 ProductListViewEvent(products: List<ProductEntity>, name: String?)
@@ -75,7 +75,7 @@ tracker.track(event)
 
 #### `ProductListViewEvent`
 
-To track a product list view you can use the `trackProductListView` method with the following attributes:
+To track a product list view you can use the `ProductListViewEvent` with the following attributes:
 
 ```java
 ProductListViewEvent(products: List<ProductEntity>, name: String?)

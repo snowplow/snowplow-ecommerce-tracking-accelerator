@@ -1,5 +1,5 @@
 +++
-title = "Set-up your tracking"
+title = "Set up your tracking"
 weight = 1
 +++
 
@@ -29,17 +29,17 @@ In your app, create the tracker.
    let tracker = Snowplow.createTracker(
     namespace: "appTracker",
     endpoint: "https://snowplow-collector-url.com"
-  )
+   )
    ```
 
    The URL path for your collector endpoint should include the protocol, "http" or "https". If not included in the URL, "https" connection will be used by default. The tracker namespace will be attached to all events, and is especially useful when multiple trackers are instrumented in the same app (with different configuration or endpoint).
 
 3. It creates a tracker instance which can be used to track events like this:
    
-  ```swift
-  let event = PromotionViewEvent(promotion: PromotionEntity(id: "IP1234"))
-
-  tracker?.track(event)
+   ```swift
+   let event = PromotionViewEvent(promotion: PromotionEntity(id: "IP1234"))
+ 
+   tracker?.track(event)
    ```
    
    If you prefer to access the tracker when the reference is not directly accessible, you can use the `defaultTracker` :
@@ -79,21 +79,21 @@ In your app, create the tracker.
 1. In your `Application` subclass, set up the SDK as follows:
    
    ```kotlin
-    val tracker = Snowplow.createTracker(
-      applicationContext, // Android context (LocalContext.current in Compose apps)
-      "appTracker", // namespace
-      "https://snowplow-collector-url.com" // Event collector URL
-    )
+   val tracker = Snowplow.createTracker(
+     applicationContext, // Android context (LocalContext.current in Compose apps)
+     "appTracker", // namespace
+     "https://snowplow-collector-url.com" // Event collector URL
+   )
    ```
 
    The URL path for your collector endpoint should include the protocol, "http" or "https". If not included in the URL, "https" connection will be used by default. The tracker namespace will be attached to all events, and is especially useful when multiple trackers are instrumented in the same app (with different configuration or endpoint).
 
 2. It creates a tracker instance which can be used to track events like this:
    
-  ```kotlin
-  val event = PromotionViewEvent(PromotionEntity(id = "IP1234"))
+   ```kotlin
+   val event = PromotionViewEvent(PromotionEntity(id = "IP1234"))
 
-  tracker.track(event)
+   tracker.track(event)
    ```
    
    If you prefer to access the tracker when the reference is not directly accessible, you can use the `defaultTracker` :
@@ -133,21 +133,21 @@ In your app, create the tracker.
 1. In your `Application` subclass, set up the SDK as follows:
    
    ```java
-    TrackerController tracker = Snowplow.createTracker(
-      getApplicationContext(), // Android context
-      "appTracker", // namespace
-      "https://snowplow-collector-url.com" // Event collector URL
-    );
+   TrackerController tracker = Snowplow.createTracker(
+     getApplicationContext(), // Android context
+     "appTracker", // namespace
+     "https://snowplow-collector-url.com" // Event collector URL
+   );
    ```
 
    The URL path for your collector endpoint should include the protocol, "http" or "https". If not included in the URL, "https" connection will be used by default. The tracker namespace will be attached to all events, and is especially useful when multiple trackers are instrumented in the same app (with different configuration or endpoint).
 
 2. It creates a tracker instance which can be used to track events like this:
    
-  ```java
-  Event event = new PromotionViewEvent(new PromotionEntity("IP1234"));
-
-  tracker.track(event);
+   ```java
+   Event event = new PromotionViewEvent(new PromotionEntity("IP1234"));
+ 
+   tracker.track(event);
    ```
    
    If you prefer to access the tracker when the reference is not directly accessible, you can use the `defaultTracker` :

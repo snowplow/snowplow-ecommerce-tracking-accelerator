@@ -1,16 +1,16 @@
 +++
-title = "Page Type and User Context"
+title = "Screen Type and User context entities"
 weight = 9
 post = ""
 +++
 
-When tracking actions on an e-commerce store, it can prove useful to be able to add extra and more generic contextual information such as the Page Type the visitor is currently on or User information for the user completing an action.
+When tracking actions on an e-commerce store, it can prove useful to be able to add extra and more generic contextual information such as the Screen/Page Type the visitor is currently on or User information for the user completing an action.
 
 To do this, we provide you the `setEcommerceScreen` and `setEcommerceUser` methods, which allow you to set this information on events sent from the Snowplow tracker. These context entities will be attached to ALL events, not just e-commerce events.
 
 #### `setEcommerceScreen`
 
-This method actually adds a Page (rather than Screen) entity, for consistency with web tracking. The Ecommerce Screen/Page entity helps in grouping insights by screen/page type, e.g. Product description, Product list, Home screen.
+For consistency with web tracking, this method adds a Page (rather than Screen) entity, defined by the schema `iglu:com.snowplowanalytics.snowplow.ecommerce/page/jsonschema/1-0-0`. The Ecommerce Screen/Page entity helps in grouping insights by screen/page type, e.g. Product description, Product list, Home screen.
 
 To set a Screen/Page entity you can use the `EcommerceScreenEntity` with the following attributes:
 
