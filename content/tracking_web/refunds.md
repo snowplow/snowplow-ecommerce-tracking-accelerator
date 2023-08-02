@@ -4,13 +4,13 @@ weight = 7
 post = ""
 +++
 
-Transaction refund events can be used to track products, or transactions as a whole, which ultimately ended on a refund request.
+Transaction refund events can be used to track products, or transactions as a whole, that ultimately ended on a refund request.
 
 ---
 
 #### Tracking refunds
 
-In this section, we will showcase how to track a refund request for a transaction. In many cases, refunds are completed through a backend system and not the website frontend, that is why we also showcase a couple of server-side language examples. You can use any of our trackers to achieve the same result.
+In this section, we will showcase how to track a refund request for a transaction. In many cases, refunds are completed through a backend system and not the website frontend, that is why we also showcase a server-side language example. You can use any of our trackers to achieve the same result.
 
 {{< tabs groupId="select_js" >}}
 {{% tab name="Browser API" %}}

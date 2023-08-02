@@ -1,5 +1,5 @@
 +++
-title = "What's Next?"
+title = "What's next?"
 weight = 4
 post = ""
 +++

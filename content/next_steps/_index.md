@@ -1,8 +1,8 @@
 +++
 title = "Next steps"
-weight = 4
+weight = 6
 chapter = true
-pre = "4. "
+pre = "5. "
 +++
 
 <!-- ### Chapter 6 -->

@@ -1,5 +1,5 @@
 +++
-title = "Set-up your tracking"
+title = "Set up your tracking"
 weight = 1
 +++
 

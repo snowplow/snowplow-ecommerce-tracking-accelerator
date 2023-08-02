@@ -11,15 +11,15 @@ aliases = [
 ]
 +++
 
-### E-commerce Web Accelerator
+### E-commerce Web and Mobile Accelerator
 #### Introduction
 
-This accelerator helps you analyze customer behavior, identify potential growth opportunities, and improve your e-commerce website's sales performance.
+This accelerator helps you analyze customer behavior, identify potential growth opportunities, and improve your e-commerce website and app (native iOS and Android) sales performance.
 
 
 Here you will learn to:
 
-- Set-up the required e-commerce tracking on your website
+- Set-up the required e-commerce tracking on your website or mobile app
 - Model and Visualize Snowplow data
   - using the [snowplow-ecommerce](https://hub.getdbt.com/snowplow/snowplow_ecommerce/latest/) dbt package and Streamlit
 - Apply these to your own pipeline to gain insights
@@ -62,7 +62,7 @@ section 4. Next steps
 #### Prerequisites
 
 {{% notice tip %}}
-Complete our [Advanced Analytics for Web](https://docs.snowplow.io/accelerators/web/) accelerator if you haven't yet started collecting data from your website.
+Complete our [Advanced Analytics for Web](https://docs.snowplow.io/accelerators/web/) or [Advanced Analytics for Mobile](https://snowplow.io/data-product-accelerators/advanced-analytics-mobile/) accelerators or if you haven't yet started collecting data from your website or mobile app.
 {{% /notice %}}
 
 **Tracking and Enrichment**

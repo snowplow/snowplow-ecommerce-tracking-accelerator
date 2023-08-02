@@ -1,8 +1,8 @@
 +++
 title = "Visualization"
 chapter = true
-weight = 3
-pre = "3. "
+weight = 5
+pre = "4. "
 post = ""
 +++
 

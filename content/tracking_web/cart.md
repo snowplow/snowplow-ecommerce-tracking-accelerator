@@ -101,7 +101,7 @@ In this section, we will showcase how to track product removals from the cart.
 
 #### `trackRemoveFromCart`
 
-To track a product view you can use the `trackRemoveFromCart` method with the following attributes:
+To track a product/s removal from the cart you can use the `trackRemoveFromCart` method with the following attributes:
 
 ```ts
 import { trackRemoveFromCart } from '@snowplow/browser-plugin-snowplow-ecommerce';
@@ -140,7 +140,7 @@ trackRemoveFromCart({
 
 #### `trackRemoveFromCart`
 
-To track a product view you can use the `trackRemoveFromCart` method with the following attributes:
+To track a product/s removal from the cart you can use the `trackRemoveFromCart` method with the following attributes:
 
 ```ts
 /* {trackerName} is a placeholder for the initialized tracker on your page.  */
