@@ -63,9 +63,7 @@ section 4. Next steps
 
 {{% notice tip %}}
 Complete our [Advanced Analytics for Web](https://docs.snowplow.io/accelerators/web/) accelerator if you haven't yet started collecting data from your website.
-{{% /notice %}}
 
-{{% notice tip %}}
 Complete our [Advanced Analytics for Mobile](https://snowplow.io/data-product-accelerators/advanced-analytics-mobile/) accelerator if you haven't yet started collecting data from your mobile app.
 {{% /notice %}}
 
