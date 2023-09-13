@@ -125,7 +125,7 @@ t.track(buildSelfDescribingEvent({
       type: "trns_error"
     }
   }
-}, [
+}), [
   /* Transaction Error context */
   {
     schema: "iglu:com.snowplowanalytics.snowplow.ecommerce/transaction_error/jsonschema/1-0-0",
@@ -140,7 +140,7 @@ t.track(buildSelfDescribingEvent({
       /* ...Transaction data */
     }
   }
-]));
+]);
 ```
 Where transaction error data can include:
 - `resolution` as the system action selected in this failure event E.g. Allowing retries, blocking the payment gateway, contacting the user or other.
@@ -163,7 +163,7 @@ t.track(buildSelfDescribingEvent({
       type: "trns_error"
     }
   }
-}, [
+}), [
   /* Transaction Error context */
   {
     schema: "iglu:com.snowplowanalytics.snowplow.ecommerce/transaction_error/jsonschema/1-0-0",
@@ -185,7 +185,7 @@ t.track(buildSelfDescribingEvent({
       payment_method: "card" 
     }
   }
-]));
+]);
 ```
 
 To learn more about tracking self describing events in Node.js take a look at the `buildSelfDescribingEvent` [documentation](https://docs.snowplow.io/docs/collecting-data/collecting-from-own-applications/javascript-trackers/node-js-tracker/node-js-tracker-v3/tracking-events/#track-self-describing-events-withbuildselfdescribingevent).

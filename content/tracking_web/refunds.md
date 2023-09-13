@@ -123,7 +123,7 @@ t.track(buildSelfDescribingEvent({
       type: "refund"
     }
   }
-}, [
+}), [
   /* Refund context */
   {
     schema: "iglu:com.snowplowanalytics.snowplow.ecommerce/refund/jsonschema/1-0-0",
@@ -138,7 +138,7 @@ t.track(buildSelfDescribingEvent({
       /* ...Product data */
     }
   }
-]));
+]);
 ```
 Where refund data can include:
 - `transaction_id` as the ID of the transaction to be refunded.
@@ -160,7 +160,7 @@ t.track(buildSelfDescribingEvent({
       type: "refund"
     }
   }
-}, [
+}), [
   {
     schema: "iglu:com.snowplowanalytics.snowplow.ecommerce/refund/jsonschema/1-0-0",
     data: { 
@@ -181,7 +181,7 @@ t.track(buildSelfDescribingEvent({
       currency: "USD",
     }
   }
-]));
+]);
 ```
 
 To learn more about tracking self describing events in Node.js take a look at the `buildSelfDescribingEvent` [documentation](https://docs.snowplow.io/docs/collecting-data/collecting-from-own-applications/javascript-trackers/node-js-tracker/node-js-tracker-v3/tracking-events/#track-self-describing-events-withbuildselfdescribingevent).
